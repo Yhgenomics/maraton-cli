@@ -54,7 +54,7 @@ size_t MaratonCommon::ResourceDescriptor::GetFreeDiskSize( const string & unit )
 
 size_t MaratonCommon::ResourceDescriptor::GetTestScore( const string & testName )
 {
-	return appraiser_factory_.CreatAppraiser( testName )->GetScore();
+	return appraiser_factory_.CreateAppraiser( testName )->GetScore();
 }
 
 size_t MaratonCommon::ResourceDescriptor::_GetSpaceOffset( const string & unit )

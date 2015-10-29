@@ -7,7 +7,7 @@
 
 using namespace MaratonCommon;
 
-unique_ptr<IAppraiser> MaratonCommon::AppraiserFactory::CreatAppraiser( const string & name )
+unique_ptr<IAppraiser> MaratonCommon::AppraiserFactory::CreateAppraiser( const string & name )
 {
 	unique_ptr<IAppraiser> outAppraiser;
 	if ( name == "ParallelPi" )

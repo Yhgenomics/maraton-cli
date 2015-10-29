@@ -21,7 +21,7 @@ namespace MaratonCommon
 	class AppraiserFactory
 	{
 	public:
-		unique_ptr<IAppraiser> CreatAppraiser( const string& name );
+		unique_ptr<IAppraiser> CreateAppraiser( const string& name );
 
 	};
 }
