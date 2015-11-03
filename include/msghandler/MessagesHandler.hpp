@@ -4,6 +4,7 @@
 #include "stdlib.h"
 #include "MessageAbilityQueryHandler.hpp"
 #include "MessageAbilityQueryACKHandler.hpp"
+#include "MessageCommandHandler.hpp"
 #include "MessageExceptionReportHandler.hpp"
 #include "MessageGreetingHandler.hpp"
 #include "MessageHeartBeatHandler.hpp"
@@ -37,6 +38,10 @@ namespace Protocol
                 
                 case 102:
                     return MessageAbilityQueryACKHandler( MessageAbilityQueryACK( message ) );
+                    break;
+                
+                case 166:
+                    return MessageCommandHandler( MessageCommand( message ) );
                     break;
                 
                 case 151:

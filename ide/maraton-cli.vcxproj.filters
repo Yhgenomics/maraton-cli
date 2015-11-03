@@ -1,121 +1,142 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\src\cli-main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="msg">
+    <Filter Include="include">
+      <UniqueIdentifier>{09b5c421-01ed-49a6-bb9f-813c34757628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\msg">
       <UniqueIdentifier>{2dc5da56-33b3-4aab-ba43-bdd5e10eac77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="msg-handler">
+    <Filter Include="include\msg-handler">
       <UniqueIdentifier>{0ea66b33-135e-43f5-baa5-59ee7e785061}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{28791ad7-7e9b-48ea-88f9-1f20a5be7fa1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\msg\MessageAbilityQuery.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageAbilityQueryACK.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageExceptionReport.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageGreeting.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageHeartBeat.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageIntro.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageResourcesQuery.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageResourcesQueryACK.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageStatusReport.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageTaskCancel.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageTaskContinue.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageTaskDeliver.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageTaskDeliverACK.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageTaskPause.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageTaskQuery.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageTaskQueryACK.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msg\MessageTaskRestart.hpp">
-      <Filter>msg</Filter>
+      <Filter>include\msg</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageAbilityQueryACKHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageAbilityQueryHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageExceptionReportHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageGreetingHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageHeartBeatHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageIntroHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageResourcesQueryACKHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageResourcesQueryHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessagesHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageStatusReportHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageTaskCancelHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageTaskContinueHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageTaskDeliverACKHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageTaskDeliverHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageTaskPauseHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageTaskQueryACKHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageTaskQueryHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
     <ClInclude Include="..\include\msghandler\MessageTaskRestartHandler.hpp">
-      <Filter>msg-handler</Filter>
+      <Filter>include\msg-handler</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\MasterFetcher.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\PostOffice.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\msg\MessageCommand.hpp">
+      <Filter>include\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\msghandler\MessageCommandHandler.hpp">
+      <Filter>include\msg-handler</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\cli-main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\PostOffice.cpp" />
   </ItemGroup>
 </Project>

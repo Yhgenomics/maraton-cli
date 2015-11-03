@@ -4,7 +4,9 @@
 #include "MessageGreeting.hpp"
 #include "MessageIntro.hpp"
 #include <iostream>
-
+#include "PostOffice.h"
+#include "ResourceDescriptor.h"
+#include "MessageStatusReport.hpp"
 namespace Protocol
 {
     static int MessageGreetingHandler( MessageGreeting& msg )
@@ -15,10 +17,22 @@ namespace Protocol
 		cout << "Preparing the SelfIntro" << endl;
 
 		MessageIntro messageout;
-		messageout.cpu( "very powerful awesome i7" );
-		messageout.cpufrequency( "6*3.5GHz" );
-		messageout.ram( "16GB" );
-		msg.owner()->send( &messageout );
+		
+		MaratonCommon::ResourceDescriptor resourceDescriptor;
+
+		messageout.uuid("TEST1234");
+		messageout.free_disk(resourceDescriptor.GetFreeDiskSize( "MB" ));
+		messageout.free_memory(resourceDescriptor.GetFreeMemorySize( "MB" ));
+		messageout.process_100m ( 2000 );		
+
+		PostOffice::instance()->SendMail( &messageout );
+
+		MessageStatusReport report;
+		report.reports( "3" );
+		PostOffice::instance()->SendMail( &report );
+		
+
+		//msg.owner()->send( &messageout );
 		return 0;
 		// UserDefineHandler End 
     }
