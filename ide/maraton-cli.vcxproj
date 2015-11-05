@@ -75,7 +75,7 @@
     <SourcePath>..\maraton-framework\src;..\maraton-framework\msg;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>..\include\msghandler;..\include\msg;..\include;..\maraton-framework\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\include\curl;..\include\msghandler;..\include\msg;..\include;..\maraton-framework\include;$(IncludePath)</IncludePath>
     <SourcePath>..\src;$(SourcePath)</SourcePath>
     <LibraryPath>..\maraton-framework\lib;..\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -95,10 +95,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libuv_x64.lib;advapi32.lib;iphlpapi.lib;psapi.lib;shell32.lib;userenv.lib;ws2_32.lib;maraton-framework.lib;resource-descriptor.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libuv_d.lib;maraton-framework_d.lib;libcurl_a.lib;resource-descriptor.lib;advapi32.lib;iphlpapi.lib;psapi.lib;shell32.lib;userenv.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -132,8 +134,10 @@
   <ItemGroup>
     <ClCompile Include="..\include\PostOffice.cpp" />
     <ClCompile Include="..\src\cli-main.cpp" />
+    <ClCompile Include="..\src\FileDownloader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\FileDownloader.h" />
     <ClInclude Include="..\include\msghandler\MessageCommandHandler.hpp" />
     <ClInclude Include="..\include\msg\MessageCommand.hpp" />
     <ClInclude Include="..\include\PostOffice.h" />

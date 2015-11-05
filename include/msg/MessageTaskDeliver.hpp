@@ -25,43 +25,30 @@ namespace Protocol
             raw_data_[ "data" ][ "task_id" ] = value;
         }
         
-        // Getter of ram_
-        string ram()
+        // Getter of uri_list_
+        vector<std::string> uri_list()
         {
-            return ram_;
+            return uri_list_;
         }
         
-        // Setter of ram_
-        void ram( string value )
+        // Setter of uri_list_
+        void uri_list( vector<std::string> value )
         {
-            ram_ = value;
-            raw_data_[ "data" ][ "ram" ] = value;
+            uri_list_ = value;
+            raw_data_[ "data" ][ "uri_list" ] = value;
         }
         
-        // Getter of command_lines_
-        string command_lines()
+        // Getter of aligner_
+        string aligner()
         {
-            return command_lines_;
+            return aligner_;
         }
         
-        // Setter of command_lines_
-        void command_lines( string value )
+        // Setter of aligner_
+        void aligner( string value )
         {
-            command_lines_ = value;
-            raw_data_[ "data" ][ "command_lines" ] = value;
-        }
-        
-        // Getter of uri_
-        vector<std::string> uri()
-        {
-            return uri_;
-        }
-        
-        // Setter of uri_
-        void uri( vector<std::string> value )
-        {
-            uri_ = value;
-            raw_data_[ "data" ][ "uri" ] = value;
+            aligner_ = value;
+            raw_data_[ "data" ][ "aligner" ] = value;
         }
         
         // Serilize Constructor
@@ -69,9 +56,8 @@ namespace Protocol
             : Message( PROTOCOL_VERSION , 131 , 0 )
         {
             task_id( "" );
-            ram( "" );
-            command_lines( "" );
-            uri(  );
+            uri_list(  );
+            aligner( "" );
         }
         
         // Deserilize Constructor
@@ -79,17 +65,15 @@ namespace Protocol
             : Message( *message )
         {
             this->task_id_ = raw_data_[ "data" ][ "task_id" ].get<string>();
-            this->ram_ = raw_data_[ "data" ][ "ram" ].get<string>();
-            this->command_lines_ = raw_data_[ "data" ][ "command_lines" ].get<string>();
-            this->uri_ = raw_data_[ "data" ][ "uri" ].get<vector<std::string>>();
+            this->uri_list_ = raw_data_[ "data" ][ "uri_list" ].get<vector<std::string>>();
+            this->aligner_ = raw_data_[ "data" ][ "aligner" ].get<string>();
         }
     
     private:
     
         string task_id_;
-        string ram_;
-        string command_lines_;
-        vector<std::string> uri_;
+        vector<std::string> uri_list_;
+        string aligner_;
     
     }; // End of class define of MessageTaskDeliver
 

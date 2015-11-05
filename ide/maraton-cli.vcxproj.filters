@@ -132,11 +132,19 @@
     <ClInclude Include="..\include\msghandler\MessageCommandHandler.hpp">
       <Filter>include\msg-handler</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\FileDownloader.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cli-main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\include\PostOffice.cpp" />
+    <ClCompile Include="..\include\PostOffice.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FileDownloader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
