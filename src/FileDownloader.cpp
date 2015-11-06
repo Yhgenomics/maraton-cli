@@ -51,7 +51,7 @@ bool FileDownloader::DownloadViaHTTP( std::string path,std::string uri  )
 
 	curl_easy_setopt( curl , CURLOPT_WRITEFUNCTION	,	DownloadCallBackSTL );
 	curl_easy_setopt( curl , CURLOPT_WRITEDATA		,	&fout );
-	curl_easy_setopt( curl , CURLOPT_VERBOSE		,	1L );
+	//curl_easy_setopt( curl , CURLOPT_VERBOSE		,	1L );
 
 	CURLcode retcCode = curl_easy_perform( curl );
 

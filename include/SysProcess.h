@@ -25,7 +25,7 @@ public:
     static void uv_work_process_callback( uv_work_t* req );
     static void uv_after_work_process_callback( uv_work_t* req , int status );
 
-    void wait_for_exit();
+    size_t wait_for_exit();
     void kill();
     
 private:
@@ -53,7 +53,9 @@ private:
 
     int result = 0;
 
-    uv_work_t* worker;
+    uv_work_t worker;
+
+    uv_sem_t sem;
 };
 
 #endif // !PROCESS_H_
