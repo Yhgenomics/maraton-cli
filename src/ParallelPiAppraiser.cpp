@@ -4,10 +4,10 @@
 // Date:		2015/10/28
 
 #include "ParallelPiAppraiser.h"
-#include < iostream >
-#include < string >
-#include < time.h >
-#include < omp.h >
+#include <iostream>
+#include <string>
+#include <time.h>
+//#include <omp>
 #define N 10000000000
 
 // Parallel cacutlate the pi for N times
@@ -18,7 +18,7 @@ size_t MaratonCommon::ParallelPiAppraiser::GetScore()
 	double	w		= 1.0 / N;
 	clock_t t1		= clock();
 
-#pragma omp parallel for private(local) reduction(+:pi)
+//#pragma omp parallel for private(local) reduction(+:pi)
 	for ( long i = 0; i < N; i++ )
 	{
 		local   = ( i + 0.5 )*w;

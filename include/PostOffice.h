@@ -2,7 +2,7 @@
 #define POST_OFFICE_H_
 
 #include "maraton.h"
-#include "message.h"
+#include "Message.h"
 #include "UVSockService.h"
 #include <string>
 using namespace std;

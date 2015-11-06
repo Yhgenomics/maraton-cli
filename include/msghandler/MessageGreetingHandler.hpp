@@ -9,7 +9,7 @@
 #include "MessageStatusReport.hpp"
 namespace Protocol
 {
-    static int MessageGreetingHandler( MessageGreeting& msg )
+    static int MessageGreetingHandler( MessageGreeting msg )
     {
         // UserDefineHandler Begin
         // Your Codes here!

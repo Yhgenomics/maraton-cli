@@ -1,7 +1,11 @@
 #include "FileDownloader.h"
+
+#include <stdio.h>
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <string.h>
+
 
 FileDownloader::FileDownloader( bool* cancel )
 {

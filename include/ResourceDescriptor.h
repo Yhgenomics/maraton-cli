@@ -8,7 +8,7 @@
 
 #include "IResourceDescriptor.hpp"
 #include "AppraiserFactory.h"
-#include < string >
+#include <string>
 
 namespace MaratonCommon
 {

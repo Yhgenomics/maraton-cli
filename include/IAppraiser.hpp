@@ -6,6 +6,7 @@
 #ifndef I_APPRAISER_HPP_
 #define I_APPRAISER_HPP_
 
+#include "stdio.h"
 using namespace std;
 
 namespace MaratonCommon

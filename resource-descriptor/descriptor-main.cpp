@@ -3,7 +3,7 @@
 //              a stable level and be well tested.
 // Creator:		Ke Yang(keyang@yhgenomics.com)
 // Date:		2015/10/27
-
+/*
 #include "ResourceDescriptor.h"
 
 #include < iostream >
@@ -23,4 +23,4 @@ int main( int argc , char** argv )
 	cout << testDesc.GetTestScore( "ParallelPi" )	<< endl;
 	system( "pause" );
 	return 0;
-}
+}*/

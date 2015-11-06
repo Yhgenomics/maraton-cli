@@ -7,7 +7,7 @@
 #ifndef I_REOUSRCE_DESCRIPTOR_HPP_
 #define I_REOUSRCE_DESCRIPTOR_HPP_
 
-#include < string >
+#include <string>
 using namespace std;
 
 namespace MaratonCommon

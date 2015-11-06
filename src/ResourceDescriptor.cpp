@@ -5,9 +5,9 @@
 
 #include "ResourceDescriptor.h"
 
-#include < atlbase.h >
-#include "winperf.h" 
-#include < iostream >
+//#include <atlbase.h>
+//#include "winperf.h"
+#include <iostream>
 
 using namespace std;
 MaratonCommon::ResourceDescriptor::ResourceDescriptor()
@@ -20,7 +20,9 @@ MaratonCommon::ResourceDescriptor::~ResourceDescriptor()
 
 size_t MaratonCommon::ResourceDescriptor::GetFreeMemorySize( const string & unit )
 {
-	size_t offset = _GetSpaceOffset( unit );
+	return -1;
+    /*
+    size_t offset = _GetSpaceOffset( unit );
 
 	if ( offset >= 0 )
 	{
@@ -33,12 +35,13 @@ size_t MaratonCommon::ResourceDescriptor::GetFreeMemorySize( const string & unit
 	else
 	{
 		return -1;
-	}
+	}*/
 }
 
 size_t MaratonCommon::ResourceDescriptor::GetFreeDiskSize( const string & unit )
 {
-	size_t offset = _GetSpaceOffset( unit );
+	return -1;
+    /*  size_t offset = _GetSpaceOffset( unit );
 
 	if ( offset >= 0 )
 	{
@@ -49,7 +52,7 @@ size_t MaratonCommon::ResourceDescriptor::GetFreeDiskSize( const string & unit )
 	else
 	{
 		return -1;
-	}
+	}*/
 }
 
 size_t MaratonCommon::ResourceDescriptor::GetTestScore( const string & testName )

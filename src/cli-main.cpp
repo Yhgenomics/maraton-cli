@@ -1,3 +1,4 @@
+#define CURL_STATICLIB 1
 #include "SessionManager.hpp"
 #include "MasterSession.h"
 #include "Session.h"
