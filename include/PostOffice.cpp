@@ -9,8 +9,8 @@ void HeartbeatCallback( uv_timer_t * timer )
 	if ( nullptr == MasterFetcher::instance()->master_pointer() )
 		return;
 
-	int temp_tick = Timer::tick();
-	int delta = temp_tick - last_tick;
+	int temp_tick	= Timer::tick();
+	int delta		= temp_tick - last_tick;
 
 	if ( delta > 1000 )
 	{

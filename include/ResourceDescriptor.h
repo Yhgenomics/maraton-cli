@@ -21,17 +21,16 @@ namespace MaratonCommon
 	class ResourceDescriptor :public IResourceDescriptor
 	{
 	public:
-
+		virtual size_t		GetFreeMemorySize( const string& unit );
+		virtual size_t		GetFreeDiskSize( const string& unit );
+		virtual size_t		GetTestScore( const string& testName );
 		ResourceDescriptor();
 		~ResourceDescriptor();
 
-		virtual size_t GetFreeMemorySize( const string& unit );
-		virtual size_t GetFreeDiskSize( const string& unit );
-		virtual size_t GetTestScore( const string& testName );
 	private:
-		virtual size_t _GetSpaceOffset( const string& unit );
+		virtual size_t		_GetSpaceOffset( const string& unit );
 
-		AppraiserFactory appraiser_factory_;
+		AppraiserFactory	appraiser_factory_;
 	};
 
 }

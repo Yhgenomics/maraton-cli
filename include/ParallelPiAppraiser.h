@@ -13,7 +13,6 @@ namespace MaratonCommon
 	class ParallelPiAppraiser :public IAppraiser
 	{
 	public:
-
 		virtual size_t GetScore();
 	};
 

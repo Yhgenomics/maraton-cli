@@ -18,9 +18,9 @@ int main( int argc , char** argv )
 {
 	ResourceDescriptor testDesc;
 
-	cout << testDesc.GetFreeMemorySize( "MB" ) << endl;;
-	cout << testDesc.GetFreeDiskSize( "MB" ) << endl;
-	cout << testDesc.GetTestScore( "ParallelPi" ) << endl;
+	cout << testDesc.GetFreeMemorySize( "MB" )		<< endl;
+	cout << testDesc.GetFreeDiskSize( "MB" )		<< endl;
+	cout << testDesc.GetTestScore( "ParallelPi" )	<< endl;
 	system( "pause" );
 	return 0;
 }

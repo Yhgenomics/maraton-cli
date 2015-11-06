@@ -16,18 +16,9 @@ namespace MaratonCommon
 	class IResourceDescriptor
 	{
 	public:
-		virtual size_t  GetFreeMemorySize( const string& unit )
-		{
-			return -1;
-		}
-		virtual size_t GetFreeDiskSize( const string& unit )
-		{
-			return -1;
-		}
-		virtual size_t GetTestScore( const string& testName )
-		{
-			return -1;
-		}
+		virtual size_t GetFreeMemorySize( const string& unit )	{ return -1; }
+		virtual size_t GetFreeDiskSize( const string& unit )	{ return -1; }
+		virtual size_t GetTestScore( const string& testName )	{ return -1; }
 	};
 }
 

@@ -13,7 +13,7 @@
 
 int main( int argc , char** argv )
 {
-	PostOffice::instance()->master_ip = "10.0.0.20";
+	PostOffice::instance()->master_ip	= "10.0.0.20";
 	PostOffice::instance()->master_port = 90;
 	PostOffice::instance()->Init();
 

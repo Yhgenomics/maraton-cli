@@ -14,10 +14,7 @@ namespace MaratonCommon
 	class IAppraiser
 	{
 	public:
-		virtual size_t  GetScore()
-		{
-			return -1;
-		}
+		virtual size_t  GetScore() { return -1; }
 	};
 }
 
