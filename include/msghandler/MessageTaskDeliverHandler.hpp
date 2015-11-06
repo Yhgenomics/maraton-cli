@@ -7,17 +7,14 @@
 #include <vector>
 #include <string>
 #include "FileDownloader.h"
+#include "SysProcess.h"
 
 namespace Protocol
 {
     static int MessageTaskDeliverHandler( MessageTaskDeliver msg )
     {
         // UserDefineHandler Begin
-        // Your Codes here!
-		//MessageTaskDeliverACK messageout;
-		//messageout.task_id( msg.task_id() );
-		//messageout.result( "OK begin to run, wait for a Status Report!" );
-		//PostOffice::instance()->SendMail( &messageout );
+        // Your Codes here!	
 		
 		if ( PostOffice::instance()->self_status == "3" )
 		{
@@ -33,16 +30,13 @@ namespace Protocol
 
 			PostOffice::instance()->self_status = "5";
 			PostOffice::instance()->SendSelfStatus();
-			cout << "pretent to do some job" << endl;
+			//SysProcess taskExecutor( "echo" , "123" , [] ( size_t i ) { cout << "finished" << endl; } );
+			//taskExecutor.wait_for_exit();
 
 			PostOffice::instance()->self_status = "3";
 			PostOffice::instance()->SendSelfStatus();
 			cout << "pretent job done" << endl;
 		}
-		
-	
-		
-
 
         return 0;
         // UserDefineHandler End 

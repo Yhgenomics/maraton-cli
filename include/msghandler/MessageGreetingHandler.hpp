@@ -21,18 +21,19 @@ namespace Protocol
 		MaratonCommon::ResourceDescriptor resourceDescriptor;
 
 		messageout.uuid("TEST1234");
-		messageout.free_disk(resourceDescriptor.GetFreeDiskSize( "MB" ));
-		messageout.free_memory(resourceDescriptor.GetFreeMemorySize( "MB" ));
-		messageout.process_100m ( 2000 );		
+		//messageout.free_disk(resourceDescriptor.GetFreeDiskSize( "MB" ));
+		//messageout.free_memory(resourceDescriptor.GetFreeMemorySize( "MB" ));
+		//messageout.process_100m ( 2000 );
+		messageout.free_disk( 50000 );
+		messageout.free_memory(5000);
+		messageout.process_100m ( 2000 );	
 
 		PostOffice::instance()->SendMail( &messageout );
 
 		MessageStatusReport report;
 		report.reports( "3" );
 		PostOffice::instance()->SendMail( &report );
-		
 
-		//msg.owner()->send( &messageout );
 		return 0;
 		// UserDefineHandler End 
     }
