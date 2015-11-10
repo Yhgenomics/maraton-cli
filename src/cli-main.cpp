@@ -23,7 +23,8 @@ int main( int argc , char** argv )
 			[] ( MasterSession* session )
 			{
 				MasterFetcher::instance()->master_pointer( session );
-				PostOffice::instance()->self_status = "3";
+				PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
+				PostOffice::instance()->SendSelfStatus();
 
  				std::cout << "On Connected : " << session->id() << std::endl;
 				session->on_message([] ( Message* message )

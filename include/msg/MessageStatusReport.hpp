@@ -13,13 +13,13 @@ namespace Protocol
     public:
     
         // Getter of reports_
-        string reports()
+        size_t reports()
         {
             return reports_;
         }
         
         // Setter of reports_
-        void reports( string value )
+        void reports( size_t value )
         {
             reports_ = value;
             raw_data_[ "data" ][ "reports" ] = value;
@@ -29,19 +29,19 @@ namespace Protocol
         MessageStatusReport()
             : Message( PROTOCOL_VERSION , 141 , 0 )
         {
-            reports( "" );
+            reports( 0 );
         }
         
         // Deserilize Constructor
         MessageStatusReport( Message* message )
             : Message( *message )
         {
-            this->reports_ = raw_data_[ "data" ][ "reports" ].get<string>();
+            this->reports_ = raw_data_[ "data" ][ "reports" ].get<size_t>();
         }
     
     private:
     
-        string reports_;
+        size_t reports_;
     
     }; // End of class define of MessageStatusReport
 

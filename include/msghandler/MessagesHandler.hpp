@@ -20,6 +20,7 @@
 #include "MessageTaskQueryHandler.hpp"
 #include "MessageTaskQueryACKHandler.hpp"
 #include "MessageTaskRestartHandler.hpp"
+#include "MessageTaskResultHandler.hpp"
 
 using namespace std;
 namespace Protocol
@@ -102,6 +103,10 @@ namespace Protocol
                 
                 case 145:
                     return MessageTaskRestartHandler( MessageTaskRestart( message ) );
+                    break;
+                
+                case 133:
+                    return MessageTaskResultHandler( MessageTaskResult( message ) );
                     break;
                 
                 default:

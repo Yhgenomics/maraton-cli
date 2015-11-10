@@ -16,19 +16,34 @@ class SysProcess
 {
 public:
 
-    SysProcess();
-    SysProcess( std::string  file, std::string  args, std::string  directry, std::function<void(size_t)> on_finish );
-    SysProcess( std::string  file, std::string  args, std::function<void( size_t )> on_finish );
-    SysProcess( std::string  file, std::function<void( size_t )> on_finish );
-    ~SysProcess();
-
+    typedef std::function<void( SysProcess* , size_t )> prceoss_callback_t;
     static void uv_work_process_callback( uv_work_t* req );
     static void uv_after_work_process_callback( uv_work_t* req , int status );
 
-    size_t wait_for_exit();
-    void kill();
+    static SysProcess* create( std::string  file , std::string  args , std::string  directry , prceoss_callback_t on_finish );
+    static SysProcess* create( std::string  file , std::string  args , prceoss_callback_t on_finish );
+    static SysProcess* create( std::string  file , prceoss_callback_t on_finish );
+    static void desctroy( SysProcess** process );
+
     
+    void* data() { return this->data_; };
+    void data( void* pdata ) { this->data_ = pdata; };
+
+    void start();
+    void kill();
+
 private:
+
+    static void uv_process_exit_callback( uv_process_t* , int64_t exit_status , int term_signal );
+    static void uv_process_close_callback( uv_handle_t* handle );
+
+    SysProcess();
+    SysProcess( std::string  file , std::string  args , std::string  directry , prceoss_callback_t on_finish );
+    SysProcess( std::string  file , std::string  args , prceoss_callback_t on_finish );
+    SysProcess( std::string  file , prceoss_callback_t on_finish );
+    ~SysProcess();
+
+    size_t wait_for_exit();
 
 #ifdef _WIN32
     STARTUPINFO si_;
@@ -39,7 +54,7 @@ private:
 
 #endif
 
-    std::function<void( size_t )> callback;
+    prceoss_callback_t callback;
 
     void invoke();
 
@@ -56,6 +71,11 @@ private:
     uv_work_t worker;
 
     uv_sem_t sem;
+
+    void* data_ = nullptr;
+
+    uv_process_t child_req;
+    uv_process_options_t options = { 0 };
 };
 
 #endif // !PROCESS_H_

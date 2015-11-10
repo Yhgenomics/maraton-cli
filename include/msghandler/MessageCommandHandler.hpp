@@ -14,15 +14,15 @@ namespace Protocol
         // Your Codes here!
 		cout << "cmd in " << msg.command_line() << endl;
 		MessageStatusReport messageout;
-		messageout.reports( "4" ); //Prepare
+		messageout.reports( 4); //Prepare
 		PostOffice::instance()->SendMail( &messageout );
 		cout << "it is executing" << endl;
 		
-		messageout.reports( "5" ); //Working
+		messageout.reports( 5 ); //Working
 		PostOffice::instance()->SendMail( &messageout );
 		cout << "job done" << endl;
 		
-		messageout.reports( "3" );
+		messageout.reports( 3 );
 		PostOffice::instance()->SendMail( &messageout );
 
         return 0;

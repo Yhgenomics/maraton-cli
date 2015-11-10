@@ -12,7 +12,7 @@ namespace Protocol
     static int MessageGreetingHandler( MessageGreeting msg )
     {
         // UserDefineHandler Begin
-        // Your Codes here!
+        // Your Codes here!	
 		cout << "Excutor Receive the msg of Greeting" << endl;
 		cout << "Preparing the SelfIntro" << endl;
 
@@ -31,7 +31,7 @@ namespace Protocol
 		PostOffice::instance()->SendMail( &messageout );
 
 		MessageStatusReport report;
-		report.reports( "3" );
+		report.reports( 3 );
 		PostOffice::instance()->SendMail( &report );
 
 		return 0;

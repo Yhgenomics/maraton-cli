@@ -132,14 +132,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\include\PostOffice.cpp" />
     <ClCompile Include="..\src\cli-main.cpp" />
     <ClCompile Include="..\src\FileDownloader.cpp" />
+    <ClCompile Include="..\src\FileUploader.cpp" />
+    <ClCompile Include="..\src\PostOffice.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\ExecutorStatus.h" />
     <ClInclude Include="..\include\FileDownloader.h" />
     <ClInclude Include="..\include\msghandler\MessageCommandHandler.hpp" />
     <ClInclude Include="..\include\msg\MessageCommand.hpp" />
+    <ClInclude Include="..\include\msg\MessageTaskResult.hpp" />
     <ClInclude Include="..\include\PostOffice.h" />
     <ClInclude Include="..\include\MasterFetcher.h" />
     <ClInclude Include="..\include\msghandler\MessageAbilityQueryACKHandler.hpp" />

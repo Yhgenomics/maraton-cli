@@ -10,6 +10,7 @@ using namespace std;
 class PostOffice:public Singleton<PostOffice>
 {
 public:
+	
 	int		SendMail( Message* msg );
 	int		SendSelfStatus();
 	int		Init();
@@ -23,8 +24,25 @@ public:
 	uv_timer_t		reconnect_timer;
 	int				master_port;
 	string			master_ip;
-	string			self_status;
+	
+	enum ExcutorSates
+	{
+		kUnknoww			=  0 ,
+		kBooting			=  1 ,
+		kSelfTesting		=  2 ,
+		kStandby			=  3 ,
+		kError				=  4 ,
+		kResourceDowloading = 10 ,
+		kTaskDataPreparing	= 11 ,
+		kComputing			= 12 ,
+		kUploading			= 13 ,
+		kTaskFinished		= 14 ,
+		kException			= 20
+	};
 
+	ExcutorSates    self_status;
+
+	
 private:
 	friend			Singleton<PostOffice>;
 };

@@ -135,15 +135,24 @@
     <ClInclude Include="..\include\FileDownloader.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\msg\MessageTaskResult.hpp">
+      <Filter>include\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ExecutorStatus.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cli-main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\include\PostOffice.cpp">
+    <ClCompile Include="..\src\FileDownloader.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\FileDownloader.cpp">
+    <ClCompile Include="..\src\FileUploader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PostOffice.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
