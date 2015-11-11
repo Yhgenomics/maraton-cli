@@ -23,19 +23,19 @@ namespace Protocol
 	const string fqTail			= ".fastq";
 	const string samTail		= ".sam";
 	const string postDest		= "http://10.0.0.20/file/upload_result";
-	
+
 	static void BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result );
 	static void BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result );
 
 	static int MessageTaskDeliverHandler( MessageTaskDeliver msg )
     {
         // UserDefineHandler Begin
-        // Your Codes here!	
+        // Your Codes here!
 		if ( PostOffice::instance()->self_status == 3 )
 		{
-			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskDataPreparing; 
-			PostOffice::instance()->SendSelfStatus();
-			bool cancel;
+			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskDataPreparing;            PostOffice::instance()->SendSelfStatus();
+
+            bool cancel;
 			for ( auto item : msg.uri_list() )
 			{
 				cancel = false;
@@ -45,8 +45,8 @@ namespace Protocol
 			}
 
 			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kComputing;
-			PostOffice::instance()->SendSelfStatus();			
-			
+			PostOffice::instance()->SendSelfStatus();
+
 			auto bwaPhase1 = SysProcess::create(   workdir		+ aligner
 												 , phaseOneFlags+ separator
 												 + workdir		+ msg.task_id() + saiTail	+ separator
@@ -60,7 +60,7 @@ namespace Protocol
 		}
 
         return 0;
-        // UserDefineHandler End 
+        // UserDefineHandler End
     }
 
 	static void BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result )
@@ -77,7 +77,7 @@ namespace Protocol
 											 , BWAPhaseTwoCallBack );
 		bwaPhase2->data( originalMsg );
 		bwaPhase2->start();
-		
+
 		std::cout << "BWA Phase 1 end with result code " << result << std::endl;
 	}
 
@@ -87,26 +87,26 @@ namespace Protocol
 		MessageTaskDeliver* originalMsg = static_cast<MessageTaskDeliver*>( sysProcess->data() );
 
 		std::cout <<  "BWA Phase 2 end with result code " << result << std::endl;
-				
+
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kUploading;
 		PostOffice::instance()->SendSelfStatus();
 		FileUploader uploader;
 		uploader.UploadFileViaHttp( originalMsg->task_id() , workdir + originalMsg->task_id() + samTail , postDest );
-		
+
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
 		PostOffice::instance()->SendSelfStatus();
-		
+
 		cout << "Task done" << endl;
-		
+
 		msg.task_id( originalMsg->task_id() );
 		PostOffice::instance()->SendMail( &msg );
-		
+
 		delete originalMsg;
-		originalMsg = nullptr;		
+		originalMsg = nullptr;
 
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
 		PostOffice::instance()->SendSelfStatus();
 	}
-	    
+
 } // End of namespace Protocol
 #endif // !Message_Task_Deliver_HANDLER_HPP_
