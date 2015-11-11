@@ -10,6 +10,7 @@
 #include "SysProcess.h"
 #include "MessageTaskResult.hpp"
 #include "FileUploader.h"
+#include <iostream>
 
 namespace Protocol
 {
@@ -56,7 +57,7 @@ namespace Protocol
 				cancel = false;
 				FileDownloader fileDownloader( &cancel );
 				fileDownloader.DownloadViaHTTP( workdir +msg.task_id()+ fqTail , item );
-				cout << "File append to " << workdir + msg.task_id() + fqTail << endl;
+				std::cout << "File append to " << workdir + msg.task_id() + fqTail << endl;
 			}
 
 			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kComputing;
