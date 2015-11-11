@@ -211,6 +211,6 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 
-maraton-framework/
+maraton-framework/*
 *.o
-cmakebuild/
+cmakebuild/*

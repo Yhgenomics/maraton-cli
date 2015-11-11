@@ -112,21 +112,6 @@ maraton-cli/fast:
 .PHONY : maraton-cli/fast
 
 # target to build an object file
-home/ubuntu/DreamLand/maraton-cli/include/PostOffice.o:
-	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/include/PostOffice.o
-.PHONY : home/ubuntu/DreamLand/maraton-cli/include/PostOffice.o
-
-# target to preprocess a source file
-home/ubuntu/DreamLand/maraton-cli/include/PostOffice.i:
-	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/include/PostOffice.i
-.PHONY : home/ubuntu/DreamLand/maraton-cli/include/PostOffice.i
-
-# target to generate assembly for a file
-home/ubuntu/DreamLand/maraton-cli/include/PostOffice.s:
-	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/include/PostOffice.s
-.PHONY : home/ubuntu/DreamLand/maraton-cli/include/PostOffice.s
-
-# target to build an object file
 home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o:
 	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o
 .PHONY : home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o
@@ -172,6 +157,21 @@ home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.s:
 .PHONY : home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.s
 
 # target to build an object file
+home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o
+
+# target to preprocess a source file
+home/ubuntu/DreamLand/maraton-cli/src/FileUploader.i:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.i
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/FileUploader.i
+
+# target to generate assembly for a file
+home/ubuntu/DreamLand/maraton-cli/src/FileUploader.s:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.s
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/FileUploader.s
+
+# target to build an object file
 home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o:
 	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o
 .PHONY : home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o
@@ -185,6 +185,21 @@ home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.i:
 home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.s:
 	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.s
 .PHONY : home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.s
+
+# target to build an object file
+home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o
+
+# target to preprocess a source file
+home/ubuntu/DreamLand/maraton-cli/src/PostOffice.i:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.i
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/PostOffice.i
+
+# target to generate assembly for a file
+home/ubuntu/DreamLand/maraton-cli/src/PostOffice.s:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.s
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/PostOffice.s
 
 # target to build an object file
 home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.o:
@@ -225,9 +240,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... maraton-cli"
 	@echo "... rebuild_cache"
-	@echo "... home/ubuntu/DreamLand/maraton-cli/include/PostOffice.o"
-	@echo "... home/ubuntu/DreamLand/maraton-cli/include/PostOffice.i"
-	@echo "... home/ubuntu/DreamLand/maraton-cli/include/PostOffice.s"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.s"
@@ -237,9 +249,15 @@ help:
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.s"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileUploader.i"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileUploader.s"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.s"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/PostOffice.i"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/PostOffice.s"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.s"

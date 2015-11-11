@@ -48,6 +48,12 @@ string
 curl.h
 /home/ubuntu/DreamLand/maraton-cli/include/curl.h
 
+/home/ubuntu/DreamLand/maraton-cli/include/FileUploader.h
+string
+-
+curl.h
+/home/ubuntu/DreamLand/maraton-cli/include/curl.h
+
 /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
 stdio.h
 /home/ubuntu/DreamLand/maraton-cli/include/stdio.h
@@ -95,16 +101,6 @@ maraton.h
 /home/ubuntu/DreamLand/maraton-cli/include/ParallelPiAppraiser.h
 IAppraiser.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
-
-/home/ubuntu/DreamLand/maraton-cli/include/PostOffice.cpp
-PostOffice.h
-/home/ubuntu/DreamLand/maraton-cli/include/PostOffice.h
-MasterFetcher.h
-/home/ubuntu/DreamLand/maraton-cli/include/MasterFetcher.h
-MessageHeartBeat.hpp
-/home/ubuntu/DreamLand/maraton-cli/include/MessageHeartBeat.hpp
-MessageStatusReport.hpp
-/home/ubuntu/DreamLand/maraton-cli/include/MessageStatusReport.hpp
 
 /home/ubuntu/DreamLand/maraton-cli/include/PostOffice.h
 maraton.h
@@ -237,9 +233,21 @@ typecheck-gcc.h
 /home/ubuntu/DreamLand/maraton-cli/include/curl/typecheck-gcc.h
 
 /home/ubuntu/DreamLand/maraton-cli/include/curl/curlbuild.h
+windows.h
+-
+winsock2.h
+-
+ws2tcpip.h
+-
 sys/types.h
 -
+stdint.h
+-
+inttypes.h
+-
 sys/socket.h
+-
+sys/poll.h
 -
 
 /home/ubuntu/DreamLand/maraton-cli/include/curl/curlrules.h
@@ -456,6 +464,14 @@ json.hpp
 string
 -
 
+/home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskResult.hpp
+Message.h
+/home/ubuntu/DreamLand/maraton-cli/include/msg/Message.h
+json.hpp
+/home/ubuntu/DreamLand/maraton-cli/include/msg/json.hpp
+string
+-
+
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageAbilityQueryACKHandler.hpp
 MessageAbilityQueryACK.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageAbilityQueryACK.hpp
@@ -547,6 +563,10 @@ FileDownloader.h
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/FileDownloader.h
 SysProcess.h
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/SysProcess.h
+MessageTaskResult.hpp
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskResult.hpp
+FileUploader.h
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/FileUploader.h
 
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskPauseHandler.hpp
 MessageTaskPause.hpp
@@ -563,6 +583,10 @@ MessageTaskQuery.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskRestartHandler.hpp
 MessageTaskRestart.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskRestart.hpp
+
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskResultHandler.hpp
+MessageTaskResult.hpp
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskResult.hpp
 
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessagesHandler.hpp
 stdlib.h
@@ -603,6 +627,8 @@ MessageTaskQueryACKHandler.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskQueryACKHandler.hpp
 MessageTaskRestartHandler.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskRestartHandler.hpp
+MessageTaskResultHandler.hpp
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskResultHandler.hpp
 
 /home/ubuntu/DreamLand/maraton-cli/include/pthread-fixes.h
 pthread.h
@@ -764,6 +790,10 @@ string
 string.h
 -
 
+/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.cpp
+FileUploader.h
+/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.h
+
 /home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.cpp
 ParallelPiAppraiser.h
 /home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.h
@@ -773,6 +803,16 @@ string
 -
 time.h
 -
+
+/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.cpp
+PostOffice.h
+/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.h
+MasterFetcher.h
+/home/ubuntu/DreamLand/maraton-cli/src/MasterFetcher.h
+MessageHeartBeat.hpp
+/home/ubuntu/DreamLand/maraton-cli/src/MessageHeartBeat.hpp
+MessageStatusReport.hpp
+/home/ubuntu/DreamLand/maraton-cli/src/MessageStatusReport.hpp
 
 /home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.cpp
 ResourceDescriptor.h

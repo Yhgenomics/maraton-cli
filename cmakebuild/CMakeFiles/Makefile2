@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/ubuntu/DreamLand/maraton-cli/cmakebuild
 CMakeFiles/maraton-cli.dir/all:
 	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/depend
 	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles  1 2 3 4 5 6 7
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles  1 2 3 4 5 6 7 8
 	@echo "Built target maraton-cli"
 .PHONY : CMakeFiles/maraton-cli.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/maraton-cli.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/maraton-cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/maraton-cli.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles 0
 .PHONY : CMakeFiles/maraton-cli.dir/rule
