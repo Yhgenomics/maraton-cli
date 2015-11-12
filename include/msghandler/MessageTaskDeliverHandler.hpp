@@ -32,7 +32,7 @@ namespace Protocol
 	const string aligner		= "BWA.exe";
 
 #else
-	const string workdir		= "/home/ubuntu/GeneData/";
+	const string workdir		= "/home/ubuntu/GeneData/maratonworkspace/";
 	const string aligner		= "bwa";
 #endif
 
@@ -49,7 +49,7 @@ namespace Protocol
         // Your Codes here!
 		if ( PostOffice::instance()->self_status == 3 )
 		{
-			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskDataPreparing;            
+			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskDataPreparing;
 			PostOffice::instance()->SendSelfStatus();
 
             bool cancel;
@@ -78,23 +78,7 @@ namespace Protocol
 			string shellCmd;
 			OrderMakerParams OrderParams( msg.task_id() );
 			shellCmd = OrderMaker::instance()->MakePipeline( OrderParams );
-			cout << shellCmd << endl;
-			/*shellCmd = aligner   + separator
-                            + "mem -t 3"+ separator
-				            + workdir	+ refGen		+ " "
-				            + workdir	+ msg.task_id()	+ fqTail
-				            + " > "
-				            + workdir	+ msg.task_id() + samTail
-				            + " && "
-				            + "samtools view -bS"       + separator
-				            + workdir	+ msg.task_id() + samTail
-				            + " > "
-				            + workdir	+ msg.task_id() + bamTail
-				            + " && "
-				            + "samtools sort -m 20000000000 "
-				            + workdir	+ msg.task_id() + bamTail + separator
-				            + workdir	+ msg.task_id() + sortedTail
-                            ;*/
+
             system(shellCmd.c_str());
 
 			MessageTaskResult msgout;

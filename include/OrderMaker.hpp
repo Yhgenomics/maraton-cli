@@ -30,10 +30,10 @@ public:
 	string	refGen		= "/home/ubuntu/GeneData/hg19.fa";
 	string	workdir		= "/home/ubuntu/GeneData/maratonworkspace/";
 	string	aligner		= "bwa";
-	string	samtools	= "samtools"
+	string	samtools	= "samtools";
 	string	memOption	= "mem -t 3";
 	string	viewOption	= "view -bS";
-	string	sortOption	= "sort -m 2000000000"£»
+	string	sortOption	= "sort -m 2000000000";
 #endif
 };
 
@@ -53,9 +53,9 @@ public:
 		return Params.aligner	+ " "
 			 + Params.memOption + " "
 			 + Params.refGen	+ " "
-			 + workdir			+ Params.taskid	+ Params.fqTail
+			 + Params.workdir	+ Params.taskid	+ Params.fqTail
 			 + " > "
-			 + workdir			+ Params.taskid	+ Params.samTail;
+			 + Params.workdir	+ Params.taskid	+ Params.samTail;
 
 #endif // ! _WIN32
 		
@@ -71,9 +71,9 @@ public:
 #else
 		return Params.samtools	+ " "
 			+ Params.viewOption + " "
-			+ workdir			+ Params.taskid + Params.samTail
+			+ Params.workdir	+ Params.taskid + Params.samTail
 			+ " > "
-			+ workdir			+ Params.taskid + Params.bamTail;
+			+ Params.workdir	+ Params.taskid + Params.bamTail;
 
 #endif // ! _WIN32	
 	}
@@ -86,19 +86,19 @@ public:
 		}
 #ifdef _WIN32
 #else
-		return Params.samtools + " "
+		return Params.samtools  + " "
 			+ Params.sortOption + " "
-			+ workdir + Params.taskid + Params.bamTail
-			+ workdir + Params.taskid + Params.sortedTail;
+			+ Params.workdir    + Params.taskid + Params.bamTail + " "
+			+ Params.workdir    + Params.taskid + Params.sortedTail;
 
 #endif // ! _WIN32
 	}
 
 	string MakePipeline( const OrderMakerParams& Params )
 	{
-		return    MakeSamOrder( Params )
-				+ " && " + MakeBamOrder( Params )
-				+ " && " + SortBamOrder( Params );
+		return MakeSamOrder( Params )+ " && "
+             + MakeBamOrder( Params )+ " && "
+             + SortBamOrder( Params );
 	}
 private:
 	friend Singleton<OrderMaker>;
