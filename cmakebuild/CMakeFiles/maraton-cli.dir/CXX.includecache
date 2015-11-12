@@ -233,21 +233,9 @@ typecheck-gcc.h
 /home/ubuntu/DreamLand/maraton-cli/include/curl/typecheck-gcc.h
 
 /home/ubuntu/DreamLand/maraton-cli/include/curl/curlbuild.h
-windows.h
--
-winsock2.h
--
-ws2tcpip.h
--
 sys/types.h
 -
-stdint.h
--
-inttypes.h
--
 sys/socket.h
--
-sys/poll.h
 -
 
 /home/ubuntu/DreamLand/maraton-cli/include/curl/curlrules.h
@@ -567,6 +555,8 @@ MessageTaskResult.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskResult.hpp
 FileUploader.h
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/FileUploader.h
+iostream
+-
 
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskPauseHandler.hpp
 MessageTaskPause.hpp

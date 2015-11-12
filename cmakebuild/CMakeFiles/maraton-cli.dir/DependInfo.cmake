@@ -23,6 +23,8 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/home/ubuntu/DreamLand/maraton-cli/include"
   "/home/ubuntu/DreamLand/maraton-cli/include/curl"
+  "/home/ubuntu/DreamLand/maraton-cli/include/curl_ubuntu"
+  "/home/ubuntu/DreamLand/maraton-cli/include/curl_win_pure"
   "/home/ubuntu/DreamLand/maraton-cli/include/msg"
   "/home/ubuntu/DreamLand/maraton-cli/include/msghandler"
   )
