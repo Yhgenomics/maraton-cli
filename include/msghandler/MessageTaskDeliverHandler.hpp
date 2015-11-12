@@ -39,7 +39,6 @@ namespace Protocol
 
 #endif
 
-
 	static void BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result );
 	static void BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result );
 
