@@ -39,10 +39,7 @@ public:
 		kTaskFinished		= 14 ,
 		kException			= 20
 	};
-
-	ExcutorSates    self_status;
-
-	
+	ExcutorSates    self_status;	
 private:
 	friend			Singleton<PostOffice>;
 };

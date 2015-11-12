@@ -11,6 +11,7 @@
 #include "MessageTaskResult.hpp"
 #include "FileUploader.h"
 #include <iostream>
+#include "OrderMaker.hpp"
 
 namespace Protocol
 {
@@ -74,7 +75,11 @@ namespace Protocol
 			bwaPhase1->data( originalMsg );
 			bwaPhase1->start();
 #else
-            string shellCmd = aligner   + separator
+			string shellCmd;
+			OrderMakerParams OrderParams( msg.task_id() );
+			shellCmd = OrderMaker::instance()->MakePipeline( OrderParams );
+			cout << shellCmd << endl;
+			/*shellCmd = aligner   + separator
                             + "mem -t 3"+ separator
 				            + workdir	+ refGen		+ " "
 				            + workdir	+ msg.task_id()	+ fqTail
@@ -89,7 +94,7 @@ namespace Protocol
 				            + "samtools sort -m 20000000000 "
 				            + workdir	+ msg.task_id() + bamTail + separator
 				            + workdir	+ msg.task_id() + sortedTail
-                            ;
+                            ;*/
             system(shellCmd.c_str());
 
 			MessageTaskResult msgout;
