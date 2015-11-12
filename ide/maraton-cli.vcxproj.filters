@@ -141,6 +141,9 @@
     <ClInclude Include="..\include\ExecutorStatus.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\ProcessCodeMaker.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cli-main.cpp">

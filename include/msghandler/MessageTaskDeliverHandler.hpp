@@ -14,33 +14,34 @@
 
 namespace Protocol
 {
+	const string separator	= " ";
+	const string refGen		= "hg19.fa";
+	const string saiTail	= ".sai";
+	const string fqTail		= ".fastq";
+	const string samTail	= ".sam";
+	const string bamTail	= ".bam";
+	const string sortedTail = ".sorted";
+	const string postDest	= "http://10.0.0.20/file/upload_result";
+	//http://[host]/bam/upload/
+
 #ifdef _WIN32
-    const string separator		= " ";
+   
 	const string workdir		= "E:\\GeneData\\";
 	const string phaseOneFlags	= "aln -t 8 -f";
 	const string phaseTwoFlags	= "samse -f";
 	const string aligner		= "BWA.exe";
-	const string refGen			= "hg19.fa";
-	const string saiTail		= ".sai";
-	const string fqTail			= ".fastq";
-	const string samTail		= ".sam";
-	const string postDest		= "http://10.0.0.20/file/upload_result";
-#else
-    const string separator		= " ";
-	const string workdir		= "/home/ubuntu/GeneData/";
-	const string phaseOneFlags	= "aln -t 3 -f";
-	const string phaseTwoFlags	= "samse -f";
-	const string aligner		= "BWA.exe";
-	const string refGen			= "hg19.fa";
-	const string saiTail		= ".sai";
-	const string fqTail			= ".fastq";
-	const string samTail		= ".sam";
-	const string postDest		= "http://10.0.0.20/file/upload_result";
 
+#else
+	const string workdir		= "/home/ubuntu/GeneData/";
+	const string aligner		= "bwa";	
 #endif
 
+#ifdef _WIN32
 	static void BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result );
 	static void BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result );
+#else
+	static void AllInOneCallBack( SysProcess* sysProcess , size_t result );
+#endif
 
 	static int MessageTaskDeliverHandler( MessageTaskDeliver msg )
     {
@@ -48,7 +49,8 @@ namespace Protocol
         // Your Codes here!
 		if ( PostOffice::instance()->self_status == 3 )
 		{
-			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskDataPreparing;            PostOffice::instance()->SendSelfStatus();
+			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskDataPreparing;            
+			PostOffice::instance()->SendSelfStatus();
 
             bool cancel;
 			for ( auto item : msg.uri_list() )
@@ -62,18 +64,46 @@ namespace Protocol
 			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kComputing;
 			PostOffice::instance()->SendSelfStatus();
 #ifdef _WIN32
-			auto bwaPhase1 = SysProcess::create(   workdir		+ aligner
-												 , phaseOneFlags+ separator
-												 + workdir		+ msg.task_id() + saiTail	+ separator
-												 + workdir		+ refGen		+ separator
-												 + workdir		+ msg.task_id() + fqTail
-												 , workdir
-												 , BWAPhaseOneCallBack );
+			auto bwaPhase1 = SysProcess::create(  workdir		+ aligner
+												, phaseOneFlags	+ separator
+												+ workdir		+ msg.task_id() + saiTail	+ separator
+												+ workdir		+ refGen		+ separator
+												+ workdir		+ msg.task_id() + fqTail
+												, workdir
+												, BWAPhaseOneCallBack );
 			auto originalMsg = new MessageTaskDeliver( msg );
 			bwaPhase1->data( originalMsg );
 			bwaPhase1->start();
 #else
-            string geneDir      = "/home/ubuntu/GeneData/";
+			
+            auto allInOne = SysProcess::create(
+				  "bwa"
+				, "mem -t 3"+ " "
+				+ workdir	+ refGen		+ " "
+				+ workdir	+ msg.task_id()	+ fqTail
+				+ " > "
+				+ workdir	+ msg.task_id() + samTail
+				+ " && "
+				+ "samtools view -bS"		
+				+ " "
+				+ workdir	+ msg.task_id() + samTail
+				+ " > "
+				+ workdir	+ msg.task_id() + bamTail
+				+ " && "
+				+ "samtools sort -m 20000000000 "
+				+ workdir	+ msg.task_id() + bamTail
+				+ " "
+				+ workdir	+ msg.task_id() + sortedTail
+				, workdir
+				, AllInOneCallBack
+			)
+			
+			auto originalMsg = new MessageTaskDeliver( msg );
+			allInOne->data( originalMsg );
+			allInOne->start();
+			
+			/*
+			string geneDir      = "/home/ubuntu/GeneData/";
             string bwaFullName  = "/home/ubuntu/DreamLand/bwa-0.7.12/bwa";
             string refFullName  = "/home/ubuntu/GeneData/hg19.fa";
             string bwaCmdFlag   = "mem -t 3";
@@ -83,8 +113,7 @@ namespace Protocol
                                 + geneDir       + msg.task_id() + fqTail    + separator
                                 + ">"           + separator
                                 + geneDir       + msg.task_id() + samTail;
-		    PostOffice::instance()->self_status = PostOffice::ExcutorSates::kComputing;
-		    PostOffice::instance()->SendSelfStatus();
+
             cout<<endl<<endl<<firstcmd<<endl;
 	        system(firstcmd.c_str());
 
@@ -117,17 +146,16 @@ namespace Protocol
             msgout.task_id( msg.task_id() );
 		    PostOffice::instance()->SendMail( &msgout );
 
-
             PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
 		    PostOffice::instance()->SendSelfStatus();
-
+			*/
 #endif
 		}
 
         return 0;
         // UserDefineHandler End
     }
-
+#ifdef _WIN32
 	static void BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result )
 	{
 		MessageTaskDeliver* originalMsg = static_cast<MessageTaskDeliver*>( sysProcess->data() );
@@ -161,7 +189,7 @@ namespace Protocol
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
 		PostOffice::instance()->SendSelfStatus();
 
-		cout << "Task done" << endl;
+		std::cout << "Task done" << std::endl;
 
 		msg.task_id( originalMsg->task_id() );
 		PostOffice::instance()->SendMail( &msg );
@@ -172,6 +200,35 @@ namespace Protocol
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
 		PostOffice::instance()->SendSelfStatus();
 	}
+#else
+	static void AllInOneCallBack( SysProcess* sysProcess , size_t result )
+	{
+		MessageTaskResult msg;
+		MessageTaskDeliver* originalMsg = static_cast<MessageTaskDeliver*>( sysProcess->data() );
+
+		std::cout << "Fastq to sorted bam end with result code " << result << std::endl;
+
+		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kUploading;
+		PostOffice::instance()->SendSelfStatus();
+		FileUploader uploader;
+		uploader.UploadFileViaHttp( originalMsg->task_id() , workdir + originalMsg->task_id() + sortedTail + bamTail , postDest );
+
+		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
+		PostOffice::instance()->SendSelfStatus();
+
+		std::cout << "Task done" << std::endl;
+
+		msg.task_id( originalMsg->task_id() );
+		PostOffice::instance()->SendMail( &msg );
+
+		delete originalMsg;
+		originalMsg = nullptr;
+
+		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
+		PostOffice::instance()->SendSelfStatus();
+	}
+
+#endif
 
 } // End of namespace Protocol
 #endif // !Message_Task_Deliver_HANDLER_HPP_

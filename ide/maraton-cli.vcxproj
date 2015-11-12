@@ -180,6 +180,7 @@
     <ClInclude Include="..\include\msg\MessageTaskQuery.hpp" />
     <ClInclude Include="..\include\msg\MessageTaskQueryACK.hpp" />
     <ClInclude Include="..\include\msg\MessageTaskRestart.hpp" />
+    <ClInclude Include="..\include\ProcessCodeMaker.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
