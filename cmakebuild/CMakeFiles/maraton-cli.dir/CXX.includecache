@@ -20,6 +20,12 @@ string
 ParallelPiAppraiser.h
 /home/ubuntu/DreamLand/maraton-cli/include/ParallelPiAppraiser.h
 
+/home/ubuntu/DreamLand/maraton-cli/include/AsyncWorker.h
+functional
+-
+uv.h
+/home/ubuntu/DreamLand/maraton-cli/include/uv.h
+
 /home/ubuntu/DreamLand/maraton-cli/include/Buffer.hpp
 Macros.h
 /home/ubuntu/DreamLand/maraton-cli/include/Macros.h
@@ -434,6 +440,14 @@ json.hpp
 string
 -
 
+/home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskProgress.hpp
+Message.h
+/home/ubuntu/DreamLand/maraton-cli/include/msg/Message.h
+json.hpp
+/home/ubuntu/DreamLand/maraton-cli/include/msg/json.hpp
+string
+-
+
 /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskQuery.hpp
 Message.h
 /home/ubuntu/DreamLand/maraton-cli/include/msg/Message.h
@@ -565,10 +579,18 @@ iostream
 -
 OrderMaker.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/OrderMaker.hpp
+AsyncWorker.h
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/AsyncWorker.h
+MessageTaskProgress.hpp
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskProgress.hpp
 
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskPauseHandler.hpp
 MessageTaskPause.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskPause.hpp
+
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskProgressHandler.hpp
+MessageTaskProgress.hpp
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskProgress.hpp
 
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskQueryACKHandler.hpp
 MessageTaskQueryACK.hpp
@@ -619,6 +641,8 @@ MessageTaskDeliverACKHandler.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskDeliverACKHandler.hpp
 MessageTaskPauseHandler.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskPauseHandler.hpp
+MessageTaskProgressHandler.hpp
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskProgressHandler.hpp
 MessageTaskQueryHandler.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskQueryHandler.hpp
 MessageTaskQueryACKHandler.hpp

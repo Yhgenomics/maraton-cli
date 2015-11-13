@@ -20,7 +20,7 @@ public:
 	string	bamTail		= ".bam";
 	string	sortedTail	= ".sorted";
 	string	postDest	= "http://10.0.0.20/file/upload_result";
-#ifdef _WIN32 
+#ifdef _WIN32
 	string	refGen		= "E:\\GeneData\\hg19.fa";
 	string	workdir		= "E:\\GeneData\\";
 	string	phase1Flags	= "aln -t 8 -f";
@@ -59,7 +59,6 @@ public:
 			 + Params.workdir	+ Params.taskid	+ Params.samTail;
 
 #endif // ! _WIN32
-		
 	}
 
 	string MakeBamOrder( const OrderMakerParams& Params )
@@ -77,7 +76,7 @@ public:
 			+ " > "
 			+ Params.workdir	+ Params.taskid + Params.bamTail;
 
-#endif // ! _WIN32	
+#endif // ! _WIN32
 	}
 
 	string SortBamOrder( const OrderMakerParams& Params )
@@ -104,12 +103,13 @@ public:
 		return "";
 #else
 		return MakeSamOrder( Params ) + " && "
-			+ MakeBamOrder( Params ) + " && "
-			+ SortBamOrder( Params );
+			 + MakeBamOrder( Params ) + " && "
+			 + SortBamOrder( Params );
 
 #endif // ! _WIN32
-		
+
 	}
+
 private:
 	friend Singleton<OrderMaker>;
 };

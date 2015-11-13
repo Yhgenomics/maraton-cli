@@ -86,6 +86,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescrip
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o
  /home/ubuntu/DreamLand/maraton-cli/include/AppraiserFactory.h
  /home/ubuntu/DreamLand/maraton-cli/include/AppraiserList.h
+ /home/ubuntu/DreamLand/maraton-cli/include/AsyncWorker.h
  /home/ubuntu/DreamLand/maraton-cli/include/Buffer.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/CircleBuffer.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/ClusterSession.h
@@ -134,6 +135,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskDeliver.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskDeliverACK.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskPause.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskProgress.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskQuery.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskQueryACK.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageTaskRestart.hpp
@@ -154,6 +156,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskDeliverACKHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskDeliverHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskPauseHandler.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskProgressHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskQueryACKHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskQueryHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskRestartHandler.hpp

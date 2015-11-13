@@ -13,42 +13,42 @@
 #include <iostream>
 #include "OrderMaker.hpp"
 #include "AsyncWorker.h"
+#include "MessageTaskProgress.hpp"
 
 namespace Protocol
 {
-	const string separator	= " ";
-	const string refGen		= "hg19.fa";
-	const string saiTail	= ".sai";
-	const string fqTail		= ".fastq";
-	const string samTail	= ".sam";
-	const string bamTail	= ".bam";
-	const string sortedTail = ".sorted";
-	const string postDest	= "http://10.0.0.20/file/upload_result";
+	const   string  separator	    = " ";
+	const   string  refGen		    = "hg19.fa";
+	const   string  saiTail	        = ".sai";
+	const   string  fqTail		    = ".fastq";
+	const   string  samTail	        = ".sam";
+	const   string  bamTail	        = ".bam";
+	const   string  sortedTail      = ".sorted";
+	const   string  postDest	    = "http://10.0.0.20/file/upload_result";
 
-#ifdef _WIN32 
-	const string workdir		= "E:\\GeneData\\";
-	const string phaseOneFlags	= "aln -t 8 -f";
-	const string phaseTwoFlags	= "samse -f";
-	const string aligner		= "BWA.exe";
+#ifdef _WIN32
+	const   string  workdir		    = "E:\\GeneData\\";
+	const   string  phaseOneFlags	= "aln -t 8 -f";
+	const   string  phaseTwoFlags	= "samse -f";
+	const   string  aligner		    = "BWA.exe";
 
 #else
-	const string workdir		= "/home/ubuntu/GeneData/maratonworkspace/";
-	const string aligner		= "bwa";
+	const   string  workdir		    = "/home/ubuntu/GeneData/maratonworkspace/";
+	const   string  aligner		    = "bwa";
 #endif
 
 #ifdef _WIN32
-	static void BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result );
-	static void BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result );
+	static  void    BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result );
+	static  void    BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result );
 #else
-	static void ProcessBegin( AsyncWorker* asyncWorker );
-	static void ProcessEnd( AsyncWorker* asyncWorker );
+	static  void    ProcessBegin( AsyncWorker* asyncWorker );
+	static  void    ProcessEnd( AsyncWorker* asyncWorker );
 #endif
 
-	static int MessageTaskDeliverHandler( MessageTaskDeliver msg )
+	static  int     MessageTaskDeliverHandler( MessageTaskDeliver msg )
     {
         // UserDefineHandler Begin
         // Your Codes here!
-		
 		if ( PostOffice::instance()->self_status == 3 )
 		{
 			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskDataPreparing;
@@ -76,34 +76,9 @@ namespace Protocol
 			auto originalMsg = new MessageTaskDeliver( msg );
 			bwaPhase1->data( originalMsg );
 			bwaPhase1->start();
-			
 #else
 			string *indata = new string( msg.task_id() );
 			auto test1 = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast<void *>( indata ) );
-			/*
-			string shellCmd;
-			OrderMakerParams OrderParams( msg.task_id() );
-			shellCmd = OrderMaker::instance()->MakePipeline( OrderParams );
-
-            system(shellCmd.c_str());
-
-			MessageTaskResult msgout;
-            PostOffice::instance()->self_status = PostOffice::ExcutorSates::kUploading;
-		    PostOffice::instance()->SendSelfStatus();
-		    FileUploader uploader;
-		    uploader.UploadFileViaHttp( msg.task_id() , workdir + msg.task_id() + sortedTail + bamTail , postDest );
-
-		    PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
-		    PostOffice::instance()->SendSelfStatus();
-
-		    std::cout << "Task done" << std::endl;
-
-		    msgout.task_id( msg.task_id() );
-		    PostOffice::instance()->SendMail( &msgout );
-
-		    PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
-		    PostOffice::instance()->SendSelfStatus();
-			*/
 #endif
 		}
 
@@ -111,7 +86,7 @@ namespace Protocol
         // UserDefineHandler End
     }
 #ifdef _WIN32
-	static void BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result )
+	static  void    BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result )
 	{
 		MessageTaskDeliver* originalMsg = static_cast<MessageTaskDeliver*>( sysProcess->data() );
 
@@ -129,7 +104,7 @@ namespace Protocol
 		std::cout << "BWA Phase 1 end with result code " << result << std::endl;
 	}
 
-	static void BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result )
+	static  void    BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result )
 	{
 		MessageTaskResult msg;
 		MessageTaskDeliver* originalMsg = static_cast<MessageTaskDeliver*>( sysProcess->data() );
@@ -156,15 +131,35 @@ namespace Protocol
 		PostOffice::instance()->SendSelfStatus();
 	}
 #else
-	static void ProcessBegin( AsyncWorker* asyncWorker )
+	static  void    ProcessBegin( AsyncWorker* asyncWorker )
 	{
-		string* taskid = static_cast< string* >( asyncWorker->data() );
+		cout<<"ProcessBegin"<<endl;
+        string* taskid = static_cast< string* >( asyncWorker->data() );
 		OrderMakerParams OrderParams( *taskid );
-		string shellCmd = OrderMaker::instance()->MakePipeline( OrderParams );
-		system( shellCmd.c_str() );
+		string shellCmd;
+        MessageTaskProgress taskProgress;
+        taskProgress.task_id(*taskid);
+        taskProgress.progress(0);
+        PostOffice::instance()->SendMail( &taskProgress );
+
+        shellCmd = OrderMaker::instance()->MakeSamOrder( OrderParams );
+        system( shellCmd.c_str() );
+        taskProgress.progress(60);
+        PostOffice::instance()->SendMail( &taskProgress );
+
+        shellCmd = OrderMaker::instance()->MakeBamOrder( OrderParams );
+        system( shellCmd.c_str() );
+        taskProgress.progress(70);
+        PostOffice::instance()->SendMail( &taskProgress );
+
+        shellCmd = OrderMaker::instance()->SortBamOrder( OrderParams );
+        system( shellCmd.c_str() );
+        taskProgress.progress(80);
+        PostOffice::instance()->SendMail( &taskProgress );
+
 	}
 
-	static void ProcessEnd( AsyncWorker* asyncWorker )
+	static  void    ProcessEnd( AsyncWorker* asyncWorker )
 	{
 		string* taskid = static_cast< string* >( asyncWorker->data() );
 
@@ -174,6 +169,11 @@ namespace Protocol
 		FileUploader uploader;
 		OrderMakerParams OrderParams( *taskid );
 		uploader.UploadFileViaHttp( OrderParams.taskid , OrderParams.workdir + OrderParams.taskid + OrderParams.sortedTail + OrderParams.bamTail , OrderParams.postDest );
+
+        MessageTaskProgress taskProgress;
+        taskProgress.task_id(*taskid);
+        taskProgress.progress(100);
+        PostOffice::instance()->SendMail( &taskProgress );
 
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
 		PostOffice::instance()->SendSelfStatus();
