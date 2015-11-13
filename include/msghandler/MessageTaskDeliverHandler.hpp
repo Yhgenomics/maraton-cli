@@ -17,33 +17,8 @@
 
 namespace Protocol
 {
-	const   string  separator	    = " ";
-	const   string  refGen		    = "hg19.fa";
-	const   string  saiTail	        = ".sai";
-	const   string  fqTail		    = ".fastq";
-	const   string  samTail	        = ".sam";
-	const   string  bamTail	        = ".bam";
-	const   string  sortedTail      = ".sorted";
-	const   string  postDest	    = "http://10.0.0.20/file/upload_result";
-
-#ifdef _WIN32
-	const   string  workdir		    = "E:\\GeneData\\";
-	const   string  phaseOneFlags	= "aln -t 8 -f";
-	const   string  phaseTwoFlags	= "samse -f";
-	const   string  aligner		    = "BWA.exe";
-
-#else
-	const   string  workdir		    = "/home/ubuntu/GeneData/maratonworkspace/";
-	const   string  aligner		    = "bwa";
-#endif
-
-#ifdef _WIN32
-	static  void    BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result );
-	static  void    BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result );
-#else
 	static  void    ProcessBegin( AsyncWorker* asyncWorker );
 	static  void    ProcessEnd( AsyncWorker* asyncWorker );
-#endif
 
 	static  int     MessageTaskDeliverHandler( MessageTaskDeliver msg )
     {
@@ -55,30 +30,23 @@ namespace Protocol
 			PostOffice::instance()->SendSelfStatus();
 
             bool cancel;
+			OrderMakerParams OrderParams( msg.task_id() );
 			for ( auto item : msg.uri_list() )
 			{
 				cancel = false;
 				FileDownloader fileDownloader( &cancel );
-				fileDownloader.DownloadViaHTTP( workdir +msg.task_id()+ fqTail , item );
-				std::cout << "File append to " << workdir + msg.task_id() + fqTail << endl;
+				fileDownloader.DownloadViaHTTP( OrderParams.workdir + OrderParams.taskid+ OrderParams.fqTail , item );
+				std::cout << "File append to " << OrderParams.workdir + OrderParams.taskid + OrderParams.fqTail << endl;
 			}
 
 			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kComputing;
 			PostOffice::instance()->SendSelfStatus();
 #ifdef _WIN32
-			auto bwaPhase1 = SysProcess::create(  workdir		+ aligner
-												, phaseOneFlags	+ separator
-												+ workdir		+ msg.task_id() + saiTail	+ separator
-												+ workdir		+ refGen		+ separator
-												+ workdir		+ msg.task_id() + fqTail
-												, workdir
-												, BWAPhaseOneCallBack );
-			auto originalMsg = new MessageTaskDeliver( msg );
-			bwaPhase1->data( originalMsg );
-			bwaPhase1->start();
+			auto	originalMsg = new MessageTaskDeliver( msg );
+			auto	taskProcess = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast<void *>( originalMsg ) );			
 #else
-			string *indata = new string( msg.task_id() );
-			auto test1 = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast<void *>( indata ) );
+			string	*indata		= new string( msg.task_id() );
+			auto	taskProcess = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast<void *>( indata ) );
 #endif
 		}
 
@@ -86,49 +54,59 @@ namespace Protocol
         // UserDefineHandler End
     }
 #ifdef _WIN32
-	static  void    BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result )
+
+	static  void    ProcessBegin( AsyncWorker* asyncWorker )
 	{
-		MessageTaskDeliver* originalMsg = static_cast<MessageTaskDeliver*>( sysProcess->data() );
+		cout << "ProcessBegin" << endl;
+		auto originalMsg = static_cast< MessageTaskDeliver* >( asyncWorker->data() );
+		string shellCmd;
+		OrderMakerParams OrderParams( originalMsg->task_id() );
+		
+		MessageTaskProgress taskProgress;
+		taskProgress.task_id( originalMsg->task_id() );
+		
+		taskProgress.progress( 0 );
+		PostOffice::instance()->SendMail( &taskProgress );
 
-		auto bwaPhase2 = SysProcess::create(   workdir		+ aligner
-											 , phaseTwoFlags+ separator
-											 + workdir		+ originalMsg->task_id() + samTail + separator
-											 + workdir		+ refGen				 + separator
-											 + workdir		+ originalMsg->task_id() + saiTail + separator
-											 + workdir		+ originalMsg->task_id() + fqTail
-											 , workdir
-											 , BWAPhaseTwoCallBack );
-		bwaPhase2->data( originalMsg );
-		bwaPhase2->start();
+		shellCmd = OrderMaker::instance()->MakeSamOrder( OrderParams );
+		cout << "cmd is " << shellCmd << endl;;
+		system( shellCmd.c_str() );
+		taskProgress.progress( 60 );
+		PostOffice::instance()->SendMail( &taskProgress );
 
-		std::cout << "BWA Phase 1 end with result code " << result << std::endl;
 	}
 
-	static  void    BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result )
+	static  void    ProcessEnd( AsyncWorker* asyncWorker )
 	{
-		MessageTaskResult msg;
-		MessageTaskDeliver* originalMsg = static_cast<MessageTaskDeliver*>( sysProcess->data() );
-
-		std::cout <<  "BWA Phase 2 end with result code " << result << std::endl;
-
+		auto originalMsg = static_cast< MessageTaskDeliver* >( asyncWorker->data() );
+		
+		MessageTaskResult msgout;
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kUploading;
 		PostOffice::instance()->SendSelfStatus();
 		FileUploader uploader;
-		uploader.UploadFileViaHttp( originalMsg->task_id() , workdir + originalMsg->task_id() + samTail , postDest );
+		OrderMakerParams OrderParams( originalMsg->task_id() );
+		uploader.UploadFileViaHttp( OrderParams.taskid , OrderParams.workdir + OrderParams.taskid + OrderParams.samTail , OrderParams.postDest );
+
+		MessageTaskProgress taskProgress;
+		taskProgress.task_id( originalMsg->task_id() );
+		taskProgress.progress( 100 );
+		PostOffice::instance()->SendMail( &taskProgress );
 
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
 		PostOffice::instance()->SendSelfStatus();
 
 		std::cout << "Task done" << std::endl;
 
-		msg.task_id( originalMsg->task_id() );
-		PostOffice::instance()->SendMail( &msg );
-
-		delete originalMsg;
-		originalMsg = nullptr;
+		msgout.task_id( originalMsg->task_id() );
+		PostOffice::instance()->SendMail( &msgout );
 
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
 		PostOffice::instance()->SendSelfStatus();
+
+		delete originalMsg;
+		originalMsg = nullptr;
+		asyncWorker->data( nullptr );
+		cout << "Standby" << endl;
 	}
 #else
 	static  void    ProcessBegin( AsyncWorker* asyncWorker )

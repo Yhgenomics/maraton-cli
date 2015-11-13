@@ -138,7 +138,6 @@
     <ClCompile Include="..\src\PostOffice.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\ExecutorStatus.h" />
     <ClInclude Include="..\include\FileDownloader.h" />
     <ClInclude Include="..\include\msghandler\MessageCommandHandler.hpp" />
     <ClInclude Include="..\include\msg\MessageCommand.hpp" />

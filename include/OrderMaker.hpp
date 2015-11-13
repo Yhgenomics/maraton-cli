@@ -23,8 +23,8 @@ public:
 #ifdef _WIN32
 	string	refGen		= "E:\\GeneData\\hg19.fa";
 	string	workdir		= "E:\\GeneData\\";
-	string	phase1Flags	= "aln -t 8 -f";
-	string	phase2Flags	= "samse -f";
+	string	p1Flags		= "aln -t 8 -f";
+	string	p2Flags		= "samse -f";
 	string	aligner		= "BWA.exe";
 #else
 	string	refGen		= "/home/ubuntu/GeneData/hg19.fa";
@@ -49,7 +49,19 @@ public:
 			return "";
 		}
 #ifdef _WIN32
-		return "";
+		return Params.workdir	+ Params.aligner	+ Params.separator
+			 + Params.p1Flags	+ Params.separator
+			 + Params.workdir	+ Params.taskid		+ Params.saiTail	+ Params.separator
+			 + Params.refGen	+ Params.separator
+			 + Params.workdir	+ Params.taskid		+ Params.fqTail
+			 + " && "
+			 + Params.workdir	+ Params.aligner	+ Params.separator
+			 + Params.p2Flags	+ Params.separator
+			 + Params.workdir	+ Params.taskid		+ Params.samTail	+ Params.separator
+			 + Params.refGen	+ Params.separator
+			 + Params.workdir	+ Params.taskid		+ Params.saiTail	+ Params.separator
+			 + Params.workdir	+ Params.taskid		+ Params.fqTail;
+			
 #else
 		return Params.aligner	+ " "
 			 + Params.memOption + " "
@@ -88,10 +100,10 @@ public:
 #ifdef _WIN32
 		return "";
 #else
-		return Params.samtools  + " "
-			+ Params.sortOption + " "
-			+ Params.workdir    + Params.taskid + Params.bamTail + " "
-			+ Params.workdir    + Params.taskid + Params.sortedTail;
+		return Params.samtools   + " "
+			 + Params.sortOption + " "
+			 + Params.workdir    + Params.taskid + Params.bamTail + " "
+			 + Params.workdir    + Params.taskid + Params.sortedTail;
 
 #endif // ! _WIN32
 	}
