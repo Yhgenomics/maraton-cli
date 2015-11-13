@@ -115,6 +115,9 @@ namespace Protocol
         string* taskid = static_cast< string* >( asyncWorker->data() );
 		OrderMakerParams OrderParams( *taskid );
 		string shellCmd;
+        shellCmd = OrderMaker::instance()->MakePipeline( OrderParams );
+        system( shellCmd.c_str() );
+        /*
         MessageTaskProgress taskProgress;
         taskProgress.task_id(*taskid);
         taskProgress.progress(0);
@@ -134,12 +137,17 @@ namespace Protocol
         system( shellCmd.c_str() );
         taskProgress.progress(80);
         PostOffice::instance()->SendMail( &taskProgress );
-
+*/
 	}
 
 	static  void    ProcessEnd( AsyncWorker* asyncWorker )
 	{
-		string* taskid = static_cast< string* >( asyncWorker->data() );
+        string* taskid = static_cast< string* >( asyncWorker->data() );
+
+        MessageTaskProgress taskProgress;
+        taskProgress.task_id(*taskid);
+        taskProgress.progress(60);
+        PostOffice::instance()->SendMail( &taskProgress );
 
 		MessageTaskResult msgout;
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kUploading;
@@ -148,8 +156,6 @@ namespace Protocol
 		OrderMakerParams OrderParams( *taskid );
 		uploader.UploadFileViaHttp( OrderParams.taskid , OrderParams.workdir + OrderParams.taskid + OrderParams.sortedTail + OrderParams.bamTail , OrderParams.postDest );
 
-        MessageTaskProgress taskProgress;
-        taskProgress.task_id(*taskid);
         taskProgress.progress(100);
         PostOffice::instance()->SendMail( &taskProgress );
 
