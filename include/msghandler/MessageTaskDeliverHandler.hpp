@@ -12,6 +12,7 @@
 #include "FileUploader.h"
 #include <iostream>
 #include "OrderMaker.hpp"
+#include "AsyncWorker.h"
 
 namespace Protocol
 {
@@ -23,7 +24,6 @@ namespace Protocol
 	const string bamTail	= ".bam";
 	const string sortedTail = ".sorted";
 	const string postDest	= "http://10.0.0.20/file/upload_result";
-	//http://[host]/bam/upload/
 
 #ifdef _WIN32 
 	const string workdir		= "E:\\GeneData\\";
@@ -40,13 +40,15 @@ namespace Protocol
 	static void BWAPhaseOneCallBack( SysProcess* sysProcess , size_t result );
 	static void BWAPhaseTwoCallBack( SysProcess* sysProcess , size_t result );
 #else
-	static void AllInOneCallBack( SysProcess* sysProcess , size_t result );
+	static void ProcessBegin( AsyncWorker* asyncWorker );
+	static void ProcessEnd( AsyncWorker* asyncWorker );
 #endif
 
 	static int MessageTaskDeliverHandler( MessageTaskDeliver msg )
     {
         // UserDefineHandler Begin
         // Your Codes here!
+		
 		if ( PostOffice::instance()->self_status == 3 )
 		{
 			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskDataPreparing;
@@ -74,7 +76,11 @@ namespace Protocol
 			auto originalMsg = new MessageTaskDeliver( msg );
 			bwaPhase1->data( originalMsg );
 			bwaPhase1->start();
+			
 #else
+			string *indata = new string( msg.task_id() );
+			auto test1 = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast<void *>( indata ) );
+			/*
 			string shellCmd;
 			OrderMakerParams OrderParams( msg.task_id() );
 			shellCmd = OrderMaker::instance()->MakePipeline( OrderParams );
@@ -97,6 +103,7 @@ namespace Protocol
 
 		    PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
 		    PostOffice::instance()->SendSelfStatus();
+			*/
 #endif
 		}
 
@@ -149,7 +156,41 @@ namespace Protocol
 		PostOffice::instance()->SendSelfStatus();
 	}
 #else
+	static void ProcessBegin( AsyncWorker* asyncWorker )
+	{
+		string* taskid = static_cast< string* >( asyncWorker->data() );
+		OrderMakerParams OrderParams( *taskid );
+		string shellCmd = OrderMaker::instance()->MakePipeline( OrderParams );
+		system( shellCmd.c_str() );
+	}
 
+	static void ProcessEnd( AsyncWorker* asyncWorker )
+	{
+		string* taskid = static_cast< string* >( asyncWorker->data() );
+
+		MessageTaskResult msgout;
+		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kUploading;
+		PostOffice::instance()->SendSelfStatus();
+		FileUploader uploader;
+		OrderMakerParams OrderParams( *taskid );
+		uploader.UploadFileViaHttp( OrderParams.taskid , OrderParams.workdir + OrderParams.taskid + OrderParams.sortedTail + OrderParams.bamTail , OrderParams.postDest );
+
+		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
+		PostOffice::instance()->SendSelfStatus();
+
+		std::cout << "Task done" << std::endl;
+
+		msgout.task_id( *taskid );
+		PostOffice::instance()->SendMail( &msgout );
+
+		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
+		PostOffice::instance()->SendSelfStatus();
+
+		delete taskid;
+		taskid = nullptr;
+		asyncWorker->data( nullptr );
+		cout << "Standby" << endl;
+	}
 #endif
 
 } // End of namespace Protocol

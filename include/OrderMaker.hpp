@@ -49,6 +49,7 @@ public:
 			return "";
 		}
 #ifdef _WIN32
+		return "";
 #else
 		return Params.aligner	+ " "
 			 + Params.memOption + " "
@@ -68,6 +69,7 @@ public:
 			return "";
 		}
 #ifdef _WIN32
+		return "";
 #else
 		return Params.samtools	+ " "
 			+ Params.viewOption + " "
@@ -85,6 +87,7 @@ public:
 			return "";
 		}
 #ifdef _WIN32
+		return "";
 #else
 		return Params.samtools  + " "
 			+ Params.sortOption + " "
@@ -96,9 +99,16 @@ public:
 
 	string MakePipeline( const OrderMakerParams& Params )
 	{
-		return MakeSamOrder( Params )+ " && "
-             + MakeBamOrder( Params )+ " && "
-             + SortBamOrder( Params );
+
+#ifdef _WIN32
+		return "";
+#else
+		return MakeSamOrder( Params ) + " && "
+			+ MakeBamOrder( Params ) + " && "
+			+ SortBamOrder( Params );
+
+#endif // ! _WIN32
+		
 	}
 private:
 	friend Singleton<OrderMaker>;
