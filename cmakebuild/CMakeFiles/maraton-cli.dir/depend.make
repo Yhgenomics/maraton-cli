@@ -9,6 +9,17 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o: /home/ubuntu/DreamLand/maraton-cli/include/ResourceDescriptor.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o: /home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.cpp
 
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/include/AnalysisHelper.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/include/curl/curl.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/include/curl/curlbuild.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/include/curl/curlrules.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/include/curl/curlver.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/include/curl/easy.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/include/curl/multi.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/include/curl/typecheck-gcc.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.cpp
+
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o: /home/ubuntu/DreamLand/maraton-cli/include/AppraiserFactory.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o: /home/ubuntu/DreamLand/maraton-cli/include/AppraiserList.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o: /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
@@ -83,6 +94,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescrip
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.o: /home/ubuntu/DreamLand/maraton-cli/include/ResourceDescriptor.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.o: /home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.cpp
 
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/AnalysisHelper.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/AppraiserFactory.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/AppraiserList.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/AsyncWorker.h
@@ -92,6 +104,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /ho
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/FileDownloader.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/FileUploader.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/IResourceDescriptor.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/Logger.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/Macros.h

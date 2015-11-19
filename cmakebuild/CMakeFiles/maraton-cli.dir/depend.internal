@@ -9,6 +9,17 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor
  /home/ubuntu/DreamLand/maraton-cli/include/ParallelPiAppraiser.h
  /home/ubuntu/DreamLand/maraton-cli/include/ResourceDescriptor.h
  /home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.cpp
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o
+ /home/ubuntu/DreamLand/maraton-cli/include/AnalysisHelper.h
+ /home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curl.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curlbuild.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curlrules.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curlver.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/easy.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/multi.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/typecheck-gcc.h
+ /home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.cpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o
  /home/ubuntu/DreamLand/maraton-cli/include/AppraiserFactory.h
  /home/ubuntu/DreamLand/maraton-cli/include/AppraiserList.h
@@ -84,6 +95,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescrip
  /home/ubuntu/DreamLand/maraton-cli/include/ResourceDescriptor.h
  /home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.cpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o
+ /home/ubuntu/DreamLand/maraton-cli/include/AnalysisHelper.h
  /home/ubuntu/DreamLand/maraton-cli/include/AppraiserFactory.h
  /home/ubuntu/DreamLand/maraton-cli/include/AppraiserList.h
  /home/ubuntu/DreamLand/maraton-cli/include/AsyncWorker.h
@@ -93,6 +105,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o
  /home/ubuntu/DreamLand/maraton-cli/include/FileDownloader.h
  /home/ubuntu/DreamLand/maraton-cli/include/FileUploader.h
  /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
  /home/ubuntu/DreamLand/maraton-cli/include/IResourceDescriptor.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/Logger.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/Macros.h

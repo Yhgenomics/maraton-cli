@@ -1,5 +1,6 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o"
+  "CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o"
   "CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o"
   "CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o"
   "CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o"

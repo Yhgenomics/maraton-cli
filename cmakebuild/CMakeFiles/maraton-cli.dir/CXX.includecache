@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/ubuntu/DreamLand/maraton-cli/include/AnalysisHelper.h
+IDockerHelper.h
+/home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
+string
+-
+curl.h
+/home/ubuntu/DreamLand/maraton-cli/include/curl.h
+
 /home/ubuntu/DreamLand/maraton-cli/include/AppraiserFactory.h
 IAppraiser.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
@@ -61,6 +69,10 @@ curl.h
 /home/ubuntu/DreamLand/maraton-cli/include/curl.h
 
 /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
+stdio.h
+/home/ubuntu/DreamLand/maraton-cli/include/stdio.h
+
+/home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
 stdio.h
 /home/ubuntu/DreamLand/maraton-cli/include/stdio.h
 
@@ -245,9 +257,21 @@ typecheck-gcc.h
 /home/ubuntu/DreamLand/maraton-cli/include/curl/typecheck-gcc.h
 
 /home/ubuntu/DreamLand/maraton-cli/include/curl/curlbuild.h
+windows.h
+-
+winsock2.h
+-
+ws2tcpip.h
+-
 sys/types.h
 -
+stdint.h
+-
+inttypes.h
+-
 sys/socket.h
+-
+sys/poll.h
 -
 
 /home/ubuntu/DreamLand/maraton-cli/include/curl/curlrules.h
@@ -790,6 +814,16 @@ ResourceDescriptor.h
  iomanip 
 -
 
+/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.cpp
+AnalysisHelper.h
+/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.h
+stdlib.h
+-
+curl.h
+-
+string
+-
+
 /home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.cpp
 AppraiserFactory.h
 /home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.h
@@ -867,4 +901,6 @@ vector
 -
 string
 -
+AnalysisHelper.h
+/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.h
 

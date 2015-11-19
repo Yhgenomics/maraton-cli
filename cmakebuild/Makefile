@@ -127,6 +127,21 @@ home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.s:
 .PHONY : home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.s
 
 # target to build an object file
+home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o
+
+# target to preprocess a source file
+home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.i:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.i
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.i
+
+# target to generate assembly for a file
+home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.s:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.s
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.s
+
+# target to build an object file
 home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o:
 	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o
 .PHONY : home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o
@@ -243,6 +258,9 @@ help:
 	@echo "... home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.s"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.i"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.s"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.s"

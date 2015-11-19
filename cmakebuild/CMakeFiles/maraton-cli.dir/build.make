@@ -72,9 +72,32 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor
 
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o.provides.build: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o
 
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: CMakeFiles/maraton-cli.dir/flags.make
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o: /home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o"
+	/usr/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o -c /home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.cpp
+
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.i"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.cpp > CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.i
+
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.s"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.cpp -o CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.s
+
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o.requires:
+.PHONY : CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o.requires
+
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o.provides: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o.requires
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o.provides.build
+.PHONY : CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o.provides
+
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o.provides.build: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o
+
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o: CMakeFiles/maraton-cli.dir/flags.make
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o: /home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o"
 	/usr/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o -c /home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.cpp
 
@@ -97,7 +120,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactor
 
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o: CMakeFiles/maraton-cli.dir/flags.make
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o: /home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o"
 	/usr/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o -c /home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.cpp
 
@@ -120,7 +143,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.
 
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o: CMakeFiles/maraton-cli.dir/flags.make
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o: /home/ubuntu/DreamLand/maraton-cli/src/FileUploader.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o"
 	/usr/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o -c /home/ubuntu/DreamLand/maraton-cli/src/FileUploader.cpp
 
@@ -143,7 +166,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o.
 
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o: CMakeFiles/maraton-cli.dir/flags.make
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o: /home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o"
 	/usr/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o -c /home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.cpp
 
@@ -166,7 +189,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppra
 
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: CMakeFiles/maraton-cli.dir/flags.make
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: /home/ubuntu/DreamLand/maraton-cli/src/PostOffice.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o"
 	/usr/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o -c /home/ubuntu/DreamLand/maraton-cli/src/PostOffice.cpp
 
@@ -189,7 +212,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o.pr
 
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.o: CMakeFiles/maraton-cli.dir/flags.make
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.o: /home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.o"
 	/usr/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.o -c /home/ubuntu/DreamLand/maraton-cli/src/ResourceDescriptor.cpp
 
@@ -212,7 +235,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ResourceDescrip
 
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: CMakeFiles/maraton-cli.dir/flags.make
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/src/cli-main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ubuntu/DreamLand/maraton-cli/cmakebuild/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o"
 	/usr/bin/clang++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o -c /home/ubuntu/DreamLand/maraton-cli/src/cli-main.cpp
 
@@ -236,6 +259,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o.prov
 # Object files for target maraton-cli
 maraton__cli_OBJECTS = \
 "CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o" \
+"CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o" \
 "CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o" \
 "CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o" \
 "CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o" \
@@ -248,6 +272,7 @@ maraton__cli_OBJECTS = \
 maraton__cli_EXTERNAL_OBJECTS =
 
 maraton-cli: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o
+maraton-cli: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o
 maraton-cli: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o
 maraton-cli: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o
 maraton-cli: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o
@@ -268,6 +293,7 @@ CMakeFiles/maraton-cli.dir/build: maraton-cli
 .PHONY : CMakeFiles/maraton-cli.dir/build
 
 CMakeFiles/maraton-cli.dir/requires: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.o.requires
+CMakeFiles/maraton-cli.dir/requires: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o.requires
 CMakeFiles/maraton-cli.dir/requires: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o.requires
 CMakeFiles/maraton-cli.dir/requires: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o.requires
 CMakeFiles/maraton-cli.dir/requires: CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o.requires

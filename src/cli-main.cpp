@@ -11,10 +11,23 @@
 #include "FileDownloader.h"
 #include <vector>
 #include <string>
+#include "AnalysisHelper.h"
+
+void TempTest()
+{
+    std::cout << "Test for AnalysisHelper" << std::endl;
+    MaratonCommon::AnalysisHelper testHelper;
+    //testHelper.Get();
+    testHelper.Post();
+    system("pause");
+}
+
 
 int main( int argc , char** argv )
 {
-	PostOffice::instance()->master_ip	= "10.0.0.20";
+    TempTest();
+    return 0 ;
+	PostOffice::instance()->master_ip	= "10.0.0.234";
 	PostOffice::instance()->master_port = 90;
 	PostOffice::instance()->Init();
 
@@ -30,7 +43,7 @@ int main( int argc , char** argv )
 				session->on_message([] ( Message* message )
 						{
 							std::cout << "On Message : " << message->command() << std::endl;
-							
+
 							if ( Protocol::MessagesHandler::process( message ) < 0 )
 							{
 								message->owner()->close();
