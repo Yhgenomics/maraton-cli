@@ -20,68 +20,68 @@ MaratonCommon::ResourceDescriptor::~ResourceDescriptor()
 
 size_t MaratonCommon::ResourceDescriptor::GetFreeMemorySize( const string & unit )
 {
-	return -1;
+    return -1;
     /*
     size_t offset = _GetSpaceOffset( unit );
 
-	if ( offset >= 0 )
-	{
-		MEMORYSTATUSEX memoryStatus;
+    if ( offset >= 0 )
+    {
+        MEMORYSTATUSEX memoryStatus;
 
-		memoryStatus.dwLength = sizeof( memoryStatus );
-		GlobalMemoryStatusEx( &memoryStatus );
-		return memoryStatus.ullAvailPhys >> offset;
-	}
-	else
-	{
-		return -1;
-	}*/
+        memoryStatus.dwLength = sizeof( memoryStatus );
+        GlobalMemoryStatusEx( &memoryStatus );
+        return memoryStatus.ullAvailPhys >> offset;
+    }
+    else
+    {
+        return -1;
+    }*/
 }
 
 size_t MaratonCommon::ResourceDescriptor::GetFreeDiskSize( const string & unit )
 {
-	return -1;
+    return -1;
     /*  size_t offset = _GetSpaceOffset( unit );
 
-	if ( offset >= 0 )
-	{
-		ULARGE_INTEGER freeBytesAvailable;
-		GetDiskFreeSpaceEx( NULL , &freeBytesAvailable , NULL , NULL );
-		return  freeBytesAvailable.QuadPart >> offset;
-	}
-	else
-	{
-		return -1;
-	}*/
+    if ( offset >= 0 )
+    {
+        ULARGE_INTEGER freeBytesAvailable;
+        GetDiskFreeSpaceEx( NULL , &freeBytesAvailable , NULL , NULL );
+        return  freeBytesAvailable.QuadPart >> offset;
+    }
+    else
+    {
+        return -1;
+    }*/
 }
 
 size_t MaratonCommon::ResourceDescriptor::GetTestScore( const string & testName )
 {
-	return appraiser_factory_.CreateAppraiser( testName )->GetScore();
+    return appraiser_factory_.CreateAppraiser( testName )->GetScore();
 }
 
 size_t MaratonCommon::ResourceDescriptor::_GetSpaceOffset( const string & unit )
 {
-	size_t offset;
-	if ( unit == "MB" )
-	{
-		offset = 20;
-	}
-	else if ( unit == "GB" )
-	{
-		offset = 30;
-	}
-	else if ( unit == "KB" )
-	{
-		offset = 10;
-	}
-	else if ( unit == "B" || unit == "Byte" )
-	{
-		offset = 0;
-	}
-	else
-	{
-		offset = -1;
-	}
-	return offset;
+    size_t offset;
+    if      ( unit == "MB" )
+    {
+        offset = 20;
+    }
+    else if ( unit == "GB" )
+    {
+        offset = 30;
+    }
+    else if ( unit == "KB" )
+    {
+        offset = 10;
+    }
+    else if ( unit == "B" || unit == "Byte" )
+    {
+        offset = 0;
+    }
+    else
+    {
+        offset = -1;
+    }
+    return offset;
 }

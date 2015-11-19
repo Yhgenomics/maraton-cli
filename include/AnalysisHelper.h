@@ -12,21 +12,10 @@
 
 namespace MaratonCommon
 {
-    class AnalysisHelper: public IDockerHelper
+    class AnalysisHelper : public IDockerHelper
     {
     public:
-        size_t Get();
-        size_t Post();
-
-	    CURL			*curl_;
-	    CURLM			*multi_handle_;
-	    curl_httppost	*post_;
-	    curl_httppost	*last_;
-	    curl_slist		*header_list_;
-	    std::string		expect_;
-    	int				running_flag;
-	    timeval			timeout_;
-    	long			timeout_ms_;
+        
     };
 }
 #endif // !ANALYSIS_HELPER_H_

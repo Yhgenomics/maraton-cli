@@ -19,7 +19,7 @@ size_t FileDownloader::DownloadCallBack( void* pBuffer , size_t nSize , size_t n
 
 size_t FileDownloader::DownloadCallBackSTL( void * pBuffer , size_t nSize , size_t nMemByte , void * pParam )
 {
-    std::ofstream*	pFout       = static_cast< std::ofstream* > ( pParam );
+    std::ofstream*  pFout       = static_cast< std::ofstream* > ( pParam );
     size_t          realSize    = nSize*nMemByte;
     char*           byteBuffer  = new char[ realSize + 1 ];
 
