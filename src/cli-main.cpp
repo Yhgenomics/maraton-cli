@@ -17,11 +17,8 @@ void TempTest()
 {
     std::cout << "Test for AnalysisHelper" << std::endl;
     MaratonCommon::AnalysisHelper testHelper;
-    //testHelper.Get();
-    testHelper.Post();
-    system( "pause" );
+    testHelper.ProcessData();
 }
-
 
 int main( int argc , char** argv )
 {
@@ -63,4 +60,3 @@ int main( int argc , char** argv )
 
     PostOffice::instance()->Run();
 }
-

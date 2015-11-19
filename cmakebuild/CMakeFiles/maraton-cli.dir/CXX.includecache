@@ -7,8 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/ubuntu/DreamLand/maraton-cli/include/AnalysisHelper.h
-IDockerHelper.h
-/home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
+DockerHelper.h
+/home/ubuntu/DreamLand/maraton-cli/include/DockerHelper.h
 string
 -
 curl.h
@@ -56,6 +56,14 @@ vector
 functional
 -
 
+/home/ubuntu/DreamLand/maraton-cli/include/DockerHelper.h
+stdio.h
+/home/ubuntu/DreamLand/maraton-cli/include/stdio.h
+string
+-
+maraton.h
+/home/ubuntu/DreamLand/maraton-cli/include/maraton.h
+
 /home/ubuntu/DreamLand/maraton-cli/include/FileDownloader.h
 string
 -
@@ -69,10 +77,6 @@ curl.h
 /home/ubuntu/DreamLand/maraton-cli/include/curl.h
 
 /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
-stdio.h
-/home/ubuntu/DreamLand/maraton-cli/include/stdio.h
-
-/home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
 stdio.h
 /home/ubuntu/DreamLand/maraton-cli/include/stdio.h
 
@@ -115,6 +119,20 @@ string.h
 -
 maraton.h
 /home/ubuntu/DreamLand/maraton-cli/include/maraton.h
+
+/home/ubuntu/DreamLand/maraton-cli/include/NetHelper.h
+NetHelperParams.h
+/home/ubuntu/DreamLand/maraton-cli/include/NetHelperParams.h
+maraton.h
+/home/ubuntu/DreamLand/maraton-cli/include/maraton.h
+string
+-
+
+/home/ubuntu/DreamLand/maraton-cli/include/NetHelperParams.h
+string
+-
+vector
+-
 
 /home/ubuntu/DreamLand/maraton-cli/include/OrderMaker.hpp
 maraton.h
@@ -815,6 +833,8 @@ ResourceDescriptor.h
 -
 
 /home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.cpp
+DockerHelper.h
+/home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.h
 AnalysisHelper.h
 /home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.h
 stdlib.h
@@ -823,6 +843,8 @@ curl.h
 -
 string
 -
+vector
+-
 
 /home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.cpp
 AppraiserFactory.h
@@ -830,6 +852,20 @@ AppraiserFactory.h
 memory
 -
 memory.h
+-
+
+/home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.cpp
+DockerHelper.h
+/home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.h
+NetHelper.h
+/home/ubuntu/DreamLand/maraton-cli/src/NetHelper.h
+json.hpp
+/home/ubuntu/DreamLand/maraton-cli/src/json.hpp
+curl.h
+/home/ubuntu/DreamLand/maraton-cli/src/curl.h
+string
+-
+iostream
 -
 
 /home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.cpp
@@ -849,6 +885,16 @@ string.h
 /home/ubuntu/DreamLand/maraton-cli/src/FileUploader.cpp
 FileUploader.h
 /home/ubuntu/DreamLand/maraton-cli/src/FileUploader.h
+
+/home/ubuntu/DreamLand/maraton-cli/src/NetHelper.cpp
+NetHelper.h
+/home/ubuntu/DreamLand/maraton-cli/src/NetHelper.h
+curl.h
+/home/ubuntu/DreamLand/maraton-cli/src/curl.h
+string
+-
+iostream
+-
 
 /home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.cpp
 ParallelPiAppraiser.h

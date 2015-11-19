@@ -7,24 +7,26 @@
 #ifndef NET_HELPER_PARAMS_H_
 #define NET_HELPER_PARAMS_H_
 #include <string>
-
+#include <vector>
 namespace MaratonCommon
 {
-    using string = std::string;
+    using std::string;
+    using std::vector;
     class NetHelperParams
     {
-        public:
-            string   url;
-            string[] headers;
-            bool     verbose;
-            enum     XMark
-            {
-                UNKNOWN = 0,
-                GET     = 1,
-                POST    = 2
-            };
-            XMark    Option;
-    }
+    public:
+        string              url;
+        vector< string >    headers;
+        bool                verbose;
+        enum XMark
+        {
+            UNKNOWN = 0,
+            GET     = 1,
+            POST    = 2
+        };
+        XMark               option;
+        string              post_fields;
+    };
 }
 
 #endif

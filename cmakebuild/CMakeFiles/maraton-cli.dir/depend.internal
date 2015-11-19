@@ -11,7 +11,16 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/resource-descriptor
  /home/ubuntu/DreamLand/maraton-cli/resource-descriptor/descriptor-main.cpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.o
  /home/ubuntu/DreamLand/maraton-cli/include/AnalysisHelper.h
- /home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Buffer.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/CircleBuffer.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/DockerHelper.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Logger.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Macros.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Manager.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Singleton.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Timer.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Types.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Zlib.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/curl/curl.h
  /home/ubuntu/DreamLand/maraton-cli/include/curl/curlbuild.h
  /home/ubuntu/DreamLand/maraton-cli/include/curl/curlrules.h
@@ -19,6 +28,22 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.
  /home/ubuntu/DreamLand/maraton-cli/include/curl/easy.h
  /home/ubuntu/DreamLand/maraton-cli/include/curl/multi.h
  /home/ubuntu/DreamLand/maraton-cli/include/curl/typecheck-gcc.h
+ /home/ubuntu/DreamLand/maraton-cli/include/json.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/maraton.h
+ /home/ubuntu/DreamLand/maraton-cli/include/pthread-fixes.h
+ /home/ubuntu/DreamLand/maraton-cli/include/stdint-msvc2008.h
+ /home/ubuntu/DreamLand/maraton-cli/include/tree.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-aix.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-bsd.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-darwin.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-errno.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-linux.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-sunos.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-threadpool.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-unix.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-version.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-win.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv.h
  /home/ubuntu/DreamLand/maraton-cli/src/AnalysisHelper.cpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o
  /home/ubuntu/DreamLand/maraton-cli/include/AppraiserFactory.h
@@ -26,6 +51,43 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactor
  /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/ParallelPiAppraiser.h
  /home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.cpp
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.o
+ /home/ubuntu/DreamLand/maraton-cli/include/Buffer.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/CircleBuffer.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/DockerHelper.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Logger.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Macros.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Manager.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/NetHelper.h
+ /home/ubuntu/DreamLand/maraton-cli/include/NetHelperParams.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Singleton.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Timer.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Types.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Zlib.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curl.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curlbuild.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curlrules.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curlver.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/easy.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/multi.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/typecheck-gcc.h
+ /home/ubuntu/DreamLand/maraton-cli/include/json.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/maraton.h
+ /home/ubuntu/DreamLand/maraton-cli/include/pthread-fixes.h
+ /home/ubuntu/DreamLand/maraton-cli/include/stdint-msvc2008.h
+ /home/ubuntu/DreamLand/maraton-cli/include/tree.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-aix.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-bsd.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-darwin.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-errno.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-linux.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-sunos.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-threadpool.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-unix.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-version.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-win.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv.h
+ /home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.cpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o
  /home/ubuntu/DreamLand/maraton-cli/include/FileDownloader.h
  /home/ubuntu/DreamLand/maraton-cli/include/curl/curl.h
@@ -46,6 +108,42 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o
  /home/ubuntu/DreamLand/maraton-cli/include/curl/multi.h
  /home/ubuntu/DreamLand/maraton-cli/include/curl/typecheck-gcc.h
  /home/ubuntu/DreamLand/maraton-cli/src/FileUploader.cpp
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/NetHelper.o
+ /home/ubuntu/DreamLand/maraton-cli/include/Buffer.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/CircleBuffer.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Logger.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Macros.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Manager.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/NetHelper.h
+ /home/ubuntu/DreamLand/maraton-cli/include/NetHelperParams.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Singleton.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Timer.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/Types.h
+ /home/ubuntu/DreamLand/maraton-cli/include/Zlib.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curl.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curlbuild.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curlrules.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/curlver.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/easy.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/multi.h
+ /home/ubuntu/DreamLand/maraton-cli/include/curl/typecheck-gcc.h
+ /home/ubuntu/DreamLand/maraton-cli/include/json.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/maraton.h
+ /home/ubuntu/DreamLand/maraton-cli/include/pthread-fixes.h
+ /home/ubuntu/DreamLand/maraton-cli/include/stdint-msvc2008.h
+ /home/ubuntu/DreamLand/maraton-cli/include/tree.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-aix.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-bsd.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-darwin.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-errno.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-linux.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-sunos.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-threadpool.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-unix.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-version.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv-win.h
+ /home/ubuntu/DreamLand/maraton-cli/include/uv.h
+ /home/ubuntu/DreamLand/maraton-cli/src/NetHelper.cpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o
  /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/ParallelPiAppraiser.h
@@ -102,10 +200,10 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o
  /home/ubuntu/DreamLand/maraton-cli/include/Buffer.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/CircleBuffer.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/ClusterSession.h
+ /home/ubuntu/DreamLand/maraton-cli/include/DockerHelper.h
  /home/ubuntu/DreamLand/maraton-cli/include/FileDownloader.h
  /home/ubuntu/DreamLand/maraton-cli/include/FileUploader.h
  /home/ubuntu/DreamLand/maraton-cli/include/IAppraiser.hpp
- /home/ubuntu/DreamLand/maraton-cli/include/IDockerHelper.h
  /home/ubuntu/DreamLand/maraton-cli/include/IResourceDescriptor.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/Logger.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/Macros.h

@@ -6,16 +6,16 @@
 #ifndef ANALYSIS_HELPER_H_
 #define ANALYSIS_HELPER_H_
 
-#include "IDockerHelper.h"
+#include "DockerHelper.h"
 #include <string>
 #include "curl.h"
 
 namespace MaratonCommon
 {
-    class AnalysisHelper : public IDockerHelper
+    class AnalysisHelper : public DockerHelper
     {
     public:
-        
+       size_t ProcessData();
     };
 }
 #endif // !ANALYSIS_HELPER_H_

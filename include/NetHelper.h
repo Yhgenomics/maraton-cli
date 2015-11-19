@@ -7,6 +7,7 @@
 
 #ifndef NET_HELPER_H_
 #define NET_HELPER_H_
+#include "NetHelperParams.h"
 #include "maraton.h"
 #include <string>
 
@@ -18,11 +19,11 @@ namespace MaratonCommon
         public:
             size_t Init();
             size_t DeInit();
-            size_t Get ( NetHelperParams params );
-            size_t Post( NetHelperParams params );
+            size_t GetViaHTTP ( const NetHelperParams &params );
+            size_t PostViaHTTP( const NetHelperParams &params );
         private:
             friend Singleton<NetHelper>;
-    }
+    };
 }
 
 #endif

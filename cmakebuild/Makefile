@@ -157,6 +157,21 @@ home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.s:
 .PHONY : home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.s
 
 # target to build an object file
+home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.o:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.o
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.o
+
+# target to preprocess a source file
+home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.i:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.i
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.i
+
+# target to generate assembly for a file
+home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.s:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.s
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.s
+
+# target to build an object file
 home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o:
 	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o
 .PHONY : home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o
@@ -185,6 +200,21 @@ home/ubuntu/DreamLand/maraton-cli/src/FileUploader.i:
 home/ubuntu/DreamLand/maraton-cli/src/FileUploader.s:
 	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/FileUploader.s
 .PHONY : home/ubuntu/DreamLand/maraton-cli/src/FileUploader.s
+
+# target to build an object file
+home/ubuntu/DreamLand/maraton-cli/src/NetHelper.o:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/NetHelper.o
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/NetHelper.o
+
+# target to preprocess a source file
+home/ubuntu/DreamLand/maraton-cli/src/NetHelper.i:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/NetHelper.i
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/NetHelper.i
+
+# target to generate assembly for a file
+home/ubuntu/DreamLand/maraton-cli/src/NetHelper.s:
+	$(MAKE) -f CMakeFiles/maraton-cli.dir/build.make CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/NetHelper.s
+.PHONY : home/ubuntu/DreamLand/maraton-cli/src/NetHelper.s
 
 # target to build an object file
 home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o:
@@ -264,12 +294,18 @@ help:
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/AppraiserFactory.s"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.o"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.i"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/DockerHelper.s"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.s"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileUploader.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileUploader.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/FileUploader.s"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/NetHelper.o"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/NetHelper.i"
+	@echo "... home/ubuntu/DreamLand/maraton-cli/src/NetHelper.s"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.o"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.i"
 	@echo "... home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.s"
