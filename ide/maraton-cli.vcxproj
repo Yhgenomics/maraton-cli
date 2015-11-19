@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="..\include\AnalysisHelper.h" />
     <ClInclude Include="..\include\FileDownloader.h" />
+    <ClInclude Include="..\include\FileUploader.h" />
     <ClInclude Include="..\include\IDockerHelper.h" />
     <ClInclude Include="..\include\msghandler\MessageCommandHandler.hpp" />
     <ClInclude Include="..\include\msg\MessageCommand.hpp" />

@@ -153,6 +153,9 @@
     <ClInclude Include="..\include\NetHelperParams.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\FileUploader.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cli-main.cpp">
