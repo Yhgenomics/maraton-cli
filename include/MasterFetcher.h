@@ -6,12 +6,12 @@
 class MasterFetcher : public Singleton<MasterFetcher>
 {
 public:
-	MasterSession*	master_pointer()						{ return master_pointer_;	}
-	void			master_pointer( MasterSession* value )	{ master_pointer_ = value;	}
+    MasterSession*	master_pointer()                        { return master_pointer_; }
+    void            master_pointer( MasterSession* value )  { master_pointer_ = value; }
 
 private:
-	MasterSession*	master_pointer_;
-	friend			Singleton<MasterFetcher>;
+    MasterSession*	master_pointer_;
+    friend          Singleton<MasterFetcher>;
 };
 
 #endif // !MASTER_FETCHER_H_

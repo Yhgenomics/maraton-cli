@@ -141,6 +141,18 @@
     <ClInclude Include="..\include\OrderMaker.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\AnalysisHelper.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\IDockerHelper.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NetHelper.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NetHelperParams.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cli-main.cpp">
@@ -153,6 +165,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\src\PostOffice.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\AnalysisHelper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NetHelper.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -11,12 +11,11 @@ using namespace MaratonCommon;
 
 unique_ptr<IAppraiser> MaratonCommon::AppraiserFactory::CreateAppraiser( const string & name )
 {
-	unique_ptr<IAppraiser> outAppraiser;
-	if ( name == "ParallelPi" )
-	{
-        unique_ptr<IAppraiser> out(new ParallelPiAppraiser());
-        outAppraiser= std::move(out);
-
-	}
-	return outAppraiser;
+    unique_ptr<IAppraiser> outAppraiser;
+    if ( name == "ParallelPi" )
+    {
+        unique_ptr<IAppraiser> out( new ParallelPiAppraiser() );
+        outAppraiser= std::move( out );
+    }
+    return outAppraiser;
 }

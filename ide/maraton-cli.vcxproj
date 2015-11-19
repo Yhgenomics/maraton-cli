@@ -132,16 +132,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\AnalysisHelper.cpp" />
     <ClCompile Include="..\src\cli-main.cpp" />
     <ClCompile Include="..\src\FileDownloader.cpp" />
     <ClCompile Include="..\src\FileUploader.cpp" />
+    <ClCompile Include="..\src\NetHelper.cpp" />
     <ClCompile Include="..\src\PostOffice.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\AnalysisHelper.h" />
     <ClInclude Include="..\include\FileDownloader.h" />
+    <ClInclude Include="..\include\IDockerHelper.h" />
     <ClInclude Include="..\include\msghandler\MessageCommandHandler.hpp" />
     <ClInclude Include="..\include\msg\MessageCommand.hpp" />
     <ClInclude Include="..\include\msg\MessageTaskResult.hpp" />
+    <ClInclude Include="..\include\NetHelper.h" />
+    <ClInclude Include="..\include\NetHelperParams.h" />
     <ClInclude Include="..\include\PostOffice.h" />
     <ClInclude Include="..\include\MasterFetcher.h" />
     <ClInclude Include="..\include\msghandler\MessageAbilityQueryACKHandler.hpp" />

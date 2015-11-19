@@ -1,6 +1,6 @@
 #include "FileUploader.h"
 
-bool	FileUploader::UploadFileViaHttp( std::string taskID , std::string fileFullName , std::string postDest )
+bool    FileUploader::UploadFileViaHttp( std::string taskID , std::string fileFullName , std::string postDest )
 {
 	if(Init())
 	{
@@ -12,27 +12,27 @@ bool	FileUploader::UploadFileViaHttp( std::string taskID , std::string fileFullN
 	return false;
 }
 
-bool	FileUploader::Init()
+bool    FileUploader::Init()
 {
-	post_			= NULL;
-	last_			= NULL;
-	header_list_	= NULL;
-	expect_			= "Expect:";
-	curl_			= curl_easy_init();
-	multi_handle_	= curl_multi_init();	
-	header_list_	= curl_slist_append( header_list_ , expect_.c_str() );
+    post_           = NULL;
+    last_           = NULL;
+    header_list_    = NULL;
+	expect_         = "Expect:";
+	curl_           = curl_easy_init();
+	multi_handle_   = curl_multi_init();	
+	header_list_    = curl_slist_append( header_list_ , expect_.c_str() );
 	if ( curl_ && multi_handle_ )
 		return true;
 	else
 		return false;
 }
 
-void	FileUploader::PreparePostMark( std::string taskID , std::string fileFullName )
+void    FileUploader::PreparePostMark( std::string taskID , std::string fileFullName )
 {
 	curl_formadd( &post_ ,
 				  &last_ ,
-				  CURLFORM_COPYNAME		, "sendfile" ,
-				  CURLFORM_FILE			, fileFullName.c_str() ,
+				  CURLFORM_COPYNAME	    , "sendfile" ,
+				  CURLFORM_FILE         , fileFullName.c_str() ,
 				  CURLFORM_END );
 
 	curl_formadd( &post_ ,

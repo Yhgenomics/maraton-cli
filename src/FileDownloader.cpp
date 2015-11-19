@@ -6,8 +6,8 @@
 #include <string>
 #include <string.h>
 
-FileDownloader::FileDownloader( bool* cancel ){	cancel_ = cancel; }
-FileDownloader::~FileDownloader()             {                   }
+FileDownloader::FileDownloader( bool* cancel ) { cancel_ = cancel; }
+FileDownloader::~FileDownloader() {}
 
 size_t FileDownloader::DownloadCallBack( void* pBuffer , size_t nSize , size_t nMemByte , void* pParam )
 {
@@ -37,7 +37,7 @@ size_t FileDownloader::DownloadCallBackSTL( void * pBuffer , size_t nSize , size
     return realSize;
 }
 
-bool FileDownloader::DownloadViaHTTP( std::string path,std::string uri  )
+bool FileDownloader::DownloadViaHTTP( std::string path , std::string uri )
 {
     CURL *curl = curl_easy_init();
     curl_easy_setopt( curl , CURLOPT_URL , uri.c_str() );
@@ -53,8 +53,8 @@ bool FileDownloader::DownloadViaHTTP( std::string path,std::string uri  )
 
     if ( retcCode != CURLE_OK )
     {
-    	std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror( retcCode ) << std::endl;
-    	system("pause");
+        std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror( retcCode ) << std::endl;
+        system( "pause" );
     }
 
     fout.close();
