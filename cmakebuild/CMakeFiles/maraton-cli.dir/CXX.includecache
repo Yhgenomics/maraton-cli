@@ -127,6 +127,8 @@ maraton.h
 /home/ubuntu/DreamLand/maraton-cli/include/maraton.h
 string
 -
+vector
+-
 
 /home/ubuntu/DreamLand/maraton-cli/include/NetHelperParams.h
 string
@@ -867,6 +869,8 @@ string
 -
 iostream
 -
+vector
+-
 
 /home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.cpp
 FileDownloader.h
@@ -895,6 +899,8 @@ string
 -
 iostream
 -
+json.hpp
+/home/ubuntu/DreamLand/maraton-cli/src/json.hpp
 
 /home/ubuntu/DreamLand/maraton-cli/src/ParallelPiAppraiser.cpp
 ParallelPiAppraiser.h

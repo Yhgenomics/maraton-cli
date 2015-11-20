@@ -18,10 +18,10 @@ namespace MaratonCommon
 	{
 	public:
         virtual size_t Search() { return 0; };
-        virtual size_t Pull()   { return 0; };
-		virtual size_t Run()    { return 0; };
-        virtual size_t Create( const string &dest, const string &image, const vector< string > &environment );
-        virtual size_t Start()  { return 0; };
+        virtual size_t Pull( const string &dest, const string &source );
+		virtual size_t Run( const string &dest, const string &image ,const vector< string >  &environment );
+        virtual size_t Create( const string &dest, const string &image, const vector< string > &environment ,vector<string> * const response);
+        virtual size_t Start( const string &dest, const string &containerID, vector< string > * const response );
         virtual size_t Stop()   { return 0; };
 
     private:
@@ -29,6 +29,10 @@ namespace MaratonCommon
         const string kListContianers    = "/containers/json";
         const string kCreateContianer   = "/containers/create";
         const string kStartContianer    = "/containers/(id)/start";
+        const string kCreateImage       = "/images/create";
+        const string kParamsToken       = "?";
+        const string kFromSource        = "fromSrc=";
+        const string kFromImage         = "fromImage=";
         friend Singleton<DockerHelper>;
     };
 }
