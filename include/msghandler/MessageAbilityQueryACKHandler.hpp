@@ -12,6 +12,6 @@ namespace Protocol
         return 0;
         // UserDefineHandler End 
     }
-    
+
 } // End of namespace Protocol
 #endif // !Message_Ability_Query_ACK_HANDLER_HPP_
