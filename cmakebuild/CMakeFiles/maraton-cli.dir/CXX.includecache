@@ -627,6 +627,8 @@ AsyncWorker.h
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/AsyncWorker.h
 MessageTaskProgress.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskProgress.hpp
+AnalysisHelper.h
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/AnalysisHelper.h
 
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskPauseHandler.hpp
 MessageTaskPause.hpp

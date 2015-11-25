@@ -14,41 +14,42 @@
 #include "OrderMaker.hpp"
 #include "AsyncWorker.h"
 #include "MessageTaskProgress.hpp"
+#include "AnalysisHelper.h"
 
 namespace Protocol
 {
-	static  void    ProcessBegin( AsyncWorker* asyncWorker );
-	static  void    ProcessEnd( AsyncWorker* asyncWorker );
+    static  void    ProcessBegin( AsyncWorker* asyncWorker );
+    static  void    ProcessEnd( AsyncWorker* asyncWorker );
 
 	static  int     MessageTaskDeliverHandler( MessageTaskDeliver msg )
     {
         // UserDefineHandler Begin
         // Your Codes here!
 		if ( PostOffice::instance()->self_status == 3 )
-		{
+        {
 			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskDataPreparing;
 			PostOffice::instance()->SendSelfStatus();
 
             bool cancel;
 			OrderMakerParams OrderParams( msg.task_id() );
 			for ( auto item : msg.uri_list() )
-			{
+            {
 				cancel = false;
 				FileDownloader fileDownloader( &cancel );
-				fileDownloader.DownloadViaHTTP( OrderParams.workdir + OrderParams.taskid+ OrderParams.fqTail , item );
-				std::cout << "File append to " << OrderParams.workdir + OrderParams.taskid + OrderParams.fqTail << endl;
-			}
+				fileDownloader.DownloadViaHTTP( OrderParams.inputDir + OrderParams.taskid+ OrderParams.fqTail , item );
+				std::cout << "File append to " << OrderParams.inputDir + OrderParams.taskid + OrderParams.fqTail << endl;
+            }
 
 			PostOffice::instance()->self_status = PostOffice::ExcutorSates::kComputing;
 			PostOffice::instance()->SendSelfStatus();
 #ifdef _WIN32
-			auto	originalMsg = new MessageTaskDeliver( msg );
-			auto	taskProcess = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast<void *>( originalMsg ) );			
+			auto    originalMsg = new MessageTaskDeliver( msg );
+			auto    taskProcess = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast<void *>( originalMsg ) );
 #else
-			string	*indata		= new string( msg.task_id() );
-			auto	taskProcess = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast<void *>( indata ) );
+            auto    indata      = new MessageTaskDeliver( msg );
+			auto    taskProcess = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast<void *>( indata ) );
 #endif
-		}
+        }
 
         return 0;
         // UserDefineHandler End
@@ -56,15 +57,15 @@ namespace Protocol
 #ifdef _WIN32
 
 	static  void    ProcessBegin( AsyncWorker* asyncWorker )
-	{
+    {
 		cout << "ProcessBegin" << endl;
 		auto originalMsg = static_cast< MessageTaskDeliver* >( asyncWorker->data() );
 		string shellCmd;
 		OrderMakerParams OrderParams( originalMsg->task_id() );
-		
+
 		MessageTaskProgress taskProgress;
 		taskProgress.task_id( originalMsg->task_id() );
-		
+
 		taskProgress.progress( 0 );
 		PostOffice::instance()->SendMail( &taskProgress );
 
@@ -73,13 +74,12 @@ namespace Protocol
 		system( shellCmd.c_str() );
 		taskProgress.progress( 60 );
 		PostOffice::instance()->SendMail( &taskProgress );
-
-	}
+    }
 
 	static  void    ProcessEnd( AsyncWorker* asyncWorker )
-	{
+    {
 		auto originalMsg = static_cast< MessageTaskDeliver* >( asyncWorker->data() );
-		
+
 		MessageTaskResult msgout;
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kUploading;
 		PostOffice::instance()->SendSelfStatus();
@@ -110,68 +110,56 @@ namespace Protocol
 	}
 #else
 	static  void    ProcessBegin( AsyncWorker* asyncWorker )
-	{
+    {
 		cout<<"ProcessBegin"<<endl;
-        string* taskid = static_cast< string* >( asyncWorker->data() );
-		OrderMakerParams OrderParams( *taskid );
-		string shellCmd;
-        shellCmd = OrderMaker::instance()->MakePipeline( OrderParams );
-        system( shellCmd.c_str() );
-        /*
-        MessageTaskProgress taskProgress;
-        taskProgress.task_id(*taskid);
-        taskProgress.progress(0);
-        PostOffice::instance()->SendMail( &taskProgress );
 
-        shellCmd = OrderMaker::instance()->MakeSamOrder( OrderParams );
-        system( shellCmd.c_str() );
-        taskProgress.progress(60);
-        PostOffice::instance()->SendMail( &taskProgress );
+       	auto originalMsg = static_cast< MessageTaskDeliver* >( asyncWorker->data() );
 
-        shellCmd = OrderMaker::instance()->MakeBamOrder( OrderParams );
-        system( shellCmd.c_str() );
-        taskProgress.progress(70);
-        PostOffice::instance()->SendMail( &taskProgress );
+        MaratonCommon::AnalysisHelper analysisHelper;
+        analysisHelper.CheckEnviroment();
+        asyncWorker->result(new size_t());
+        auto exitStatus= new size_t( analysisHelper.ProcessData( 3, originalMsg->reference(),originalMsg->task_id()+".fastq" ) );
+        asyncWorker->result( exitStatus );
+        return;
+    }
 
-        shellCmd = OrderMaker::instance()->SortBamOrder( OrderParams );
-        system( shellCmd.c_str() );
-        taskProgress.progress(80);
-        PostOffice::instance()->SendMail( &taskProgress );
-*/
-	}
-
-	static  void    ProcessEnd( AsyncWorker* asyncWorker )
-	{
-        string* taskid = static_cast< string* >( asyncWorker->data() );
+    static  void    ProcessEnd( AsyncWorker* asyncWorker )
+    {
+    	auto exitStatus  = static_cast< size_t* >( asyncWorker->result() );
+        if( 0 != *exitStatus )
+        {
+            std::cout << "exit code is " << *exitStatus << std::endl;
+            return;
+        }
+        auto originalMsg = static_cast< MessageTaskDeliver* >( asyncWorker->data() );
 
         MessageTaskProgress taskProgress;
-        taskProgress.task_id(*taskid);
+        taskProgress.task_id( originalMsg->task_id() );
         taskProgress.progress(60);
         PostOffice::instance()->SendMail( &taskProgress );
-
-		MessageTaskResult msgout;
+        MessageTaskResult msgout;
 		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kUploading;
 		PostOffice::instance()->SendSelfStatus();
 		FileUploader uploader;
-		OrderMakerParams OrderParams( *taskid );
-		uploader.UploadFileViaHttp( OrderParams.taskid , OrderParams.workdir + OrderParams.taskid + OrderParams.sortedTail + OrderParams.bamTail , OrderParams.postDest );
+		OrderMakerParams OrderParams( originalMsg->task_id() );
+	    uploader.UploadFileViaHttp( OrderParams.taskid , OrderParams.outputDir + OrderParams.taskid +".fastq.sam" , OrderParams.postDest );
 
         taskProgress.progress(100);
         PostOffice::instance()->SendMail( &taskProgress );
 
-		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
-		PostOffice::instance()->SendSelfStatus();
+        PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
+        PostOffice::instance()->SendSelfStatus();
 
-		std::cout << "Task done" << std::endl;
+        std::cout << "Task done" << std::endl;
 
-		msgout.task_id( *taskid );
-		PostOffice::instance()->SendMail( &msgout );
+        msgout.task_id( originalMsg->task_id() );
+        PostOffice::instance()->SendMail( &msgout );
 
-		PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
-		PostOffice::instance()->SendSelfStatus();
+        PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
+        PostOffice::instance()->SendSelfStatus();
 
-		delete taskid;
-		taskid = nullptr;
+		delete originalMsg;
+		originalMsg = nullptr;
 		asyncWorker->data( nullptr );
 		cout << "Standby" << endl;
 	}

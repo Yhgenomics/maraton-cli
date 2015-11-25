@@ -28,12 +28,17 @@ namespace MaratonCommon
         return 0;
     }
 
-    size_t DockerHelper::Create( const string &dest, const string &image, const vector< string > &environment, vector< string > * const response )
+    size_t DockerHelper::Create( const string &dest, const string &image, const vector< string > &binds, const vector< string > &environment, vector< string > * const response )
     {
         json postJson;
-        postJson[ "Image" ] = image;
-        postJson[ "Env"   ] = environment;
+        json hostConfig;
+        postJson  [ "Image"      ] = image;
+        postJson  [ "Env"        ] = environment;
+        hostConfig[ "Binds"      ] = binds;
+        postJson  [ "HostConfig" ] = hostConfig;
 
+        std::cout << "!@#$!@#$!@#$!@#$!@#$!@#$!test only json like this" << std::endl;
+        std::cout << postJson.dump(4) << std::endl;
         NetHelperParams createParams;
         createParams.headers.clear();
         createParams.headers.push_back( kDockerHeader );
@@ -54,14 +59,24 @@ namespace MaratonCommon
         startParams.url     = dest + "/containers/" + containerID + "/start";
         startParams.option  = NetHelperParams::XMark::POST;
 
-        NetHelper::instance()->PostViaHTTP( startParams ,response );
+        NetHelper::instance()->PostViaHTTP( startParams, response );
         return 0;
     }
 
-    size_t DockerHelper::Run( const string &dest, const string &image, const vector< string  > &environment )
+    size_t DockerHelper::Wait( const string &dest, const string &containerID, vector< string > * const response )
+    {
+        NetHelperParams waitParams;
+        waitParams.url      = dest + "/containers/" + containerID + "/wait";
+        waitParams.option   = NetHelperParams::XMark::POST;
+
+        NetHelper::instance()->PostViaHTTP( waitParams, response );
+        return 0;
+    }
+
+    size_t DockerHelper::Run( const string &dest, const string &image, const vector< string > &binds, const vector< string  > &environment )
     {
         vector< string > response;
-        Create(dest,image,environment, &response);
+        Create( dest, image, binds, environment, &response );
 
         string ContainerID = "";
         for ( auto item : response )
@@ -74,10 +89,17 @@ namespace MaratonCommon
                 {
                     response.clear();
                     Start( dest, ContainerID, &response );
+                    response.clear();
+                    Wait( dest, ContainerID, &response );
+                    for( auto result : response )
+                    {
+                        auto oneResult = json::parse( result );
+                        return oneResult["StatusCode"].get<int>();
+                    }
                     break;
                 }
             }
         }
-        return 0;
+        return 1;
     }
 }

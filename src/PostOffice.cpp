@@ -5,19 +5,11 @@
 
 void HeartbeatCallback( uv_timer_t * timer )
 {
-    static int last_tick = 0;
     if ( nullptr == MasterFetcher::instance()->master_pointer() )
         return;
 
-    int temp_tick   = Timer::tick();
-    int delta       = temp_tick - last_tick;
-
-    if ( delta > 1000 )
-    {
-        Protocol::MessageHeartBeat msg;
-        MasterFetcher::instance()->master_pointer()->send( &msg );
-        last_tick = temp_tick;
-    }
+    Protocol::MessageHeartBeat msg;
+    MasterFetcher::instance()->master_pointer()->send( &msg );
 }
 
 void ReconnetCallBack( uv_timer_t* timer )
@@ -55,8 +47,8 @@ int PostOffice::Init()
 int PostOffice::StartHeartBeating()
 {
     memset( &heart_beat_timer , 0 , sizeof( uv_timer_t ) );
-    uv_timer_init ( uv_default_loop() , &heart_beat_timer           );
-    uv_timer_start( &heart_beat_timer , HeartbeatCallback , 0 , 1   );
+    uv_timer_init ( uv_default_loop() , &heart_beat_timer            );
+    uv_timer_start( &heart_beat_timer , HeartbeatCallback , 0 , 1000 );
     return 0;
 }
 

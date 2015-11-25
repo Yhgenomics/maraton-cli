@@ -51,6 +51,19 @@ namespace Protocol
             raw_data_[ "data" ][ "aligner" ] = value;
         }
         
+        // Getter of reference_
+        string reference()
+        {
+            return reference_;
+        }
+        
+        // Setter of reference_
+        void reference( string value )
+        {
+            reference_ = value;
+            raw_data_[ "data" ][ "reference" ] = value;
+        }
+        
         // Serilize Constructor
         MessageTaskDeliver()
             : Message( PROTOCOL_VERSION , 131 , 0 )
@@ -58,6 +71,7 @@ namespace Protocol
             task_id( "" );
             uri_list(  );
             aligner( "" );
+            reference( "" );
         }
         
         // Deserilize Constructor
@@ -67,6 +81,7 @@ namespace Protocol
             this->task_id_ = raw_data_[ "data" ][ "task_id" ].get<string>();
             this->uri_list_ = raw_data_[ "data" ][ "uri_list" ].get<vector<std::string>>();
             this->aligner_ = raw_data_[ "data" ][ "aligner" ].get<string>();
+            this->reference_ = raw_data_[ "data" ][ "reference" ].get<string>();
         }
     
     private:
@@ -74,6 +89,7 @@ namespace Protocol
         string task_id_;
         vector<std::string> uri_list_;
         string aligner_;
+        string reference_;
     
     }; // End of class define of MessageTaskDeliver
 

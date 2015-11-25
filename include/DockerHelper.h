@@ -18,10 +18,11 @@ namespace MaratonCommon
 	{
 	public:
         virtual size_t Search() { return 0; };
-        virtual size_t Pull( const string &dest, const string &source );
-		virtual size_t Run( const string &dest, const string &image ,const vector< string >  &environment );
-        virtual size_t Create( const string &dest, const string &image, const vector< string > &environment ,vector<string> * const response);
-        virtual size_t Start( const string &dest, const string &containerID, vector< string > * const response );
+        virtual size_t Pull     ( const string &dest, const string &source );
+		virtual size_t Run      ( const string &dest, const string &image, const vector< string > &binds, const vector< string >  &environment );
+        virtual size_t Create   ( const string &dest, const string &image, const vector< string > &binds, const vector< string > &environment ,vector<string> * const response);
+        virtual size_t Start    ( const string &dest, const string &containerID, vector< string > * const response );
+        virtual size_t Wait     ( const string &dest, const string &containerID, vector< string > * const response );
         virtual size_t Stop()   { return 0; };
 
     private:

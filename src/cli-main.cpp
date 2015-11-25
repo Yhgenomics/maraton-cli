@@ -13,18 +13,9 @@
 #include <string>
 #include "AnalysisHelper.h"
 
-void TempTest()
-{
-    std::cout << "Test for AnalysisHelper" << std::endl;
-    MaratonCommon::AnalysisHelper testHelper;
-    testHelper.ProcessData();
-}
-
 int main( int argc , char** argv )
 {
-    TempTest();
-    return 0;
-    PostOffice::instance()->master_ip   = "10.0.0.234";
+    PostOffice::instance()->master_ip   = "10.0.0.20";
     PostOffice::instance()->master_port = 90;
     PostOffice::instance()->Init();
 

@@ -28,7 +28,10 @@ public:
     string	aligner		= "BWA.exe";
 #else
     string	refGen		= "/home/ubuntu/GeneData/hg19.fa";
-    string	workdir		= "/home/ubuntu/GeneData/maratonworkspace/";
+    string	workdir		= "/home/ubuntu/GeneData/";
+    string  refDir      = "/home/ubuntu/GeneData/ref/";
+    string  inputDir    = "/home/ubuntu/GeneData/dockerin/";
+    string  outputDir   = "/home/ubuntu/GeneData/dockerout/";
     string	aligner		= "bwa";
     string	samtools	= "samtools";
     string	memOption	= "mem -t 3";
