@@ -161,6 +161,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o
  /home/ubuntu/DreamLand/maraton-cli/include/PostOffice.h
  /home/ubuntu/DreamLand/maraton-cli/include/Session.h
  /home/ubuntu/DreamLand/maraton-cli/include/Singleton.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/TaskStatus.h
  /home/ubuntu/DreamLand/maraton-cli/include/Timer.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/Types.h
  /home/ubuntu/DreamLand/maraton-cli/include/UVSockService.h
@@ -219,6 +220,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o
  /home/ubuntu/DreamLand/maraton-cli/include/SessionManager.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/Singleton.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/SysProcess.h
+ /home/ubuntu/DreamLand/maraton-cli/include/TaskStatus.h
  /home/ubuntu/DreamLand/maraton-cli/include/Timer.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/Types.h
  /home/ubuntu/DreamLand/maraton-cli/include/UVSockService.h

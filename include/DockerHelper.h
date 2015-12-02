@@ -24,6 +24,7 @@ namespace MaratonCommon
         virtual size_t Start    ( const string &dest, const string &containerID, vector< string > * const response );
         virtual size_t Wait     ( const string &dest, const string &containerID, vector< string > * const response );
         virtual size_t Stop()   { return 0; };
+        virtual size_t Watch    ( const string &dest, const string &containerID, vector< string > * const response );
 
     private:
         const string kDockerHeader      = "Content-Type: application/json";

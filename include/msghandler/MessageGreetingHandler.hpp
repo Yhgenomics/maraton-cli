@@ -26,7 +26,7 @@ namespace Protocol
         //messageout.process_100m ( 2000 );
         messageout.free_disk( 50000 );
         messageout.free_memory( 5000 );
-        messageout.process_100m( 4000 );
+        messageout.process_100m( 3000 );
 
         PostOffice::instance()->SendMail( &messageout );
 

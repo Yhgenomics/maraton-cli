@@ -20,6 +20,7 @@ size_t AnalysisHelper::ProcessData( int threadsNum, string refGene, string reads
     binds.push_back( "/home/ubuntu/GeneData/dockerin/:/input/" );
     binds.push_back( "/home/ubuntu/GeneData/dockerout/:/output/" );
     binds.push_back( "/home/ubuntu/GeneData/ref/:/ref/" );
+    binds.push_back( "/dev/shm/:/dev/shm/" );
     return DockerHelper::instance()->Run( docker_daemon, process_image, binds, environment );
 }
 

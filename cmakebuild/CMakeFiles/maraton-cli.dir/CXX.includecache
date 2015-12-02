@@ -155,6 +155,8 @@ UVSockService.h
 /home/ubuntu/DreamLand/maraton-cli/include/UVSockService.h
 string
 -
+TaskStatus.h
+/home/ubuntu/DreamLand/maraton-cli/include/TaskStatus.h
 
 /home/ubuntu/DreamLand/maraton-cli/include/ResourceDescriptor.h
 IResourceDescriptor.hpp
@@ -200,6 +202,12 @@ string
 uv.h
 /home/ubuntu/DreamLand/maraton-cli/include/uv.h
 windows.h
+-
+
+/home/ubuntu/DreamLand/maraton-cli/include/TaskStatus.h
+map
+-
+string
 -
 
 /home/ubuntu/DreamLand/maraton-cli/include/Timer.hpp
@@ -629,6 +637,10 @@ MessageTaskProgress.hpp
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskProgress.hpp
 AnalysisHelper.h
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/AnalysisHelper.h
+uv.h
+/home/ubuntu/DreamLand/maraton-cli/include/msghandler/uv.h
+unistd.h
+-
 
 /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageTaskPauseHandler.hpp
 MessageTaskPause.hpp
@@ -872,6 +884,8 @@ string
 iostream
 -
 vector
+-
+unistd.h
 -
 
 /home/ubuntu/DreamLand/maraton-cli/src/FileDownloader.cpp

@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <unistd.h>
 
 namespace MaratonCommon
 {
@@ -37,8 +38,8 @@ namespace MaratonCommon
         hostConfig[ "Binds"      ] = binds;
         postJson  [ "HostConfig" ] = hostConfig;
 
-        std::cout << "!@#$!@#$!@#$!@#$!@#$!@#$!test only json like this" << std::endl;
-        std::cout << postJson.dump(4) << std::endl;
+        // std::cout << "!@#$!@#$!@#$!@#$!@#$!@#$!test only json like this" << std::endl;
+        // std::cout << postJson.dump(4) << std::endl;
         NetHelperParams createParams;
         createParams.headers.clear();
         createParams.headers.push_back( kDockerHeader );
@@ -73,6 +74,16 @@ namespace MaratonCommon
         return 0;
     }
 
+    size_t DockerHelper::Watch( const string &dest, const string &containerID, vector< string> * const response )
+    {
+        NetHelperParams watchParams;
+
+        watchParams.url     = dest +  "/containers/" + containerID + "/attach?stderr=1&stdout=1&stream=1";
+        watchParams.option  = NetHelperParams::XMark::POST;
+
+        NetHelper::instance()->PostViaHTTP( watchParams, response );
+    }
+
     size_t DockerHelper::Run( const string &dest, const string &image, const vector< string > &binds, const vector< string  > &environment )
     {
         vector< string > response;
@@ -89,8 +100,10 @@ namespace MaratonCommon
                 {
                     response.clear();
                     Start( dest, ContainerID, &response );
+
                     response.clear();
-                    Wait( dest, ContainerID, &response );
+                    Wait ( dest, ContainerID, &response );
+
                     for( auto result : response )
                     {
                         auto oneResult = json::parse( result );

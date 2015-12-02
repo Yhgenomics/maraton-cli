@@ -160,6 +160,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: /
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: /home/ubuntu/DreamLand/maraton-cli/include/PostOffice.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: /home/ubuntu/DreamLand/maraton-cli/include/Session.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: /home/ubuntu/DreamLand/maraton-cli/include/Singleton.hpp
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: /home/ubuntu/DreamLand/maraton-cli/include/TaskStatus.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: /home/ubuntu/DreamLand/maraton-cli/include/Timer.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: /home/ubuntu/DreamLand/maraton-cli/include/Types.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/PostOffice.o: /home/ubuntu/DreamLand/maraton-cli/include/UVSockService.h
@@ -218,6 +219,7 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /ho
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/SessionManager.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/Singleton.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/SysProcess.h
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/TaskStatus.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/Timer.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/Types.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/UVSockService.h

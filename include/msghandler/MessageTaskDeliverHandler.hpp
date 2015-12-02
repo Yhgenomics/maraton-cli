@@ -15,11 +15,24 @@
 #include "AsyncWorker.h"
 #include "MessageTaskProgress.hpp"
 #include "AnalysisHelper.h"
+#include "uv.h"
+#include <unistd.h>
+
+using namespace std;
 
 namespace Protocol
 {
     static  void    ProcessBegin( AsyncWorker* asyncWorker );
-    static  void    ProcessEnd( AsyncWorker* asyncWorker );
+    static  void    ProcessEnd  ( AsyncWorker* asyncWorker );
+
+    static  void    PullBegin   ( AsyncWorker* asyncWorker );
+    static  void    PullEnd     ( AsyncWorker* asyncWorker );
+    static  void    ProcessBegin( AsyncWorker* asyncWorker );
+    static  void    ProcessEnd  ( AsyncWorker* asyncWorker );
+    static  void    PushBegin   ( AsyncWorker* asyncWorker );
+    static  void    PushEnd     ( AsyncWorker* asyncWorker );
+    static  uv_mutex_t taskStatusMutex;
+    static  uv_mutex_t outputMutex;
 
     static  int     MessageTaskDeliverHandler( MessageTaskDeliver msg )
     {
@@ -32,6 +45,23 @@ namespace Protocol
 
             bool cancel;
             OrderMakerParams OrderParams( msg.task_id() );
+            PostOffice::instance()->current_task = msg.task_id();
+
+            for ( auto uri : msg.uri_list() )
+            {
+                PostOffice::instance()->task_board[ msg.task_id() ].block_map[ uri ] = TaskStatus::BlockStatus::WAIT;
+            }
+
+            // refacotr 2015 12 02 to block sequence process
+            // auto pullData       = new vector< std::string >( msg.uri_list() );
+
+            auto pullLooper     = AsyncWorker::create( PullBegin    , PullEnd   , nullptr );
+
+           // auto processLoooper = AsyncWorker::create( ProcessBegin , ProcessEnd, nullptr );
+
+           // auto pushLooper     = AsyncWorker::create( PushBegin    , PushEnd   , nullptr );
+
+            return 0;
             for ( auto item : msg.uri_list() )
             {
                 cancel = false;
@@ -42,73 +72,83 @@ namespace Protocol
 
             PostOffice::instance()->self_status = PostOffice::ExcutorSates::kComputing;
             PostOffice::instance()->SendSelfStatus();
-#ifdef _WIN32
-            auto    originalMsg = new MessageTaskDeliver( msg );
-            auto    taskProcess = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast< void * >( originalMsg ) );
-#else
-            auto    indata      = new MessageTaskDeliver( msg );
-            auto    taskProcess = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast< void * >( indata ) );
-#endif
+          //  auto    indata      = new MessageTaskDeliver( msg );
+          //  auto    taskProcess = AsyncWorker::create( ProcessBegin , ProcessEnd , static_cast< void * >( indata ) );
         }
 
         return 0;
         // UserDefineHandler End
     }
-#ifdef _WIN32
+
+    static  void    PullBegin   ( AsyncWorker* asyncWorker )
+    {
+        cout << "Pull Begin" << endl;
+        bool allPulled = false;
+
+        uv_mutex_lock  ( &taskStatusMutex );
+        allPulled = PostOffice::instance()->GetCurrentTaskStatus().IsAllPulled();
+        uv_mutex_unlock( &taskStatusMutex );
+
+        for ( auto& item : PostOffice::instance()->GetCurrentTaskStatus().block_map)
+        {
+            cout<< item.first  << endl;
+            cout<< item.second << endl;
+            string uri = item.first;
+            int pos = uri.find_last_of('/');
+            string fileName = uri.substr( pos + 1, uri.length() - pos - 1  );
+
+            bool cancel = false;
+            FileDownloader fileDownloader( &cancel );
+            fileDownloader.DownloadViaHTTP( "/data/input/"+fileName  , item.first );
+            std::cout << "File download to /data/input/ " << fileName << endl;
+            uv_mutex_lock  ( &taskStatusMutex );
+            item.second = MaratonCommon::TaskStatus::BlockStatus::PULLED;
+            uv_mutex_unlock( &taskStatusMutex );
+
+        }
+
+        uv_mutex_lock  ( &taskStatusMutex );
+        allPulled = PostOffice::instance()->GetCurrentTaskStatus().IsAllPulled();
+        uv_mutex_unlock( &taskStatusMutex );
+
+        cout<<" debug only info "<<endl;
+
+        uv_mutex_lock   ( &taskStatusMutex );
+        for ( auto task : PostOffice::instance()->task_board )
+        {
+           for ( auto block : task.second.block_map )
+           {
+               cout << "block name : "  << block.first   << endl;
+               cout << "block statue : "<< block.second  << endl;
+           }
+        }
+        uv_mutex_unlock ( &taskStatusMutex );
+    }
+
+    static  void    PullEnd     ( AsyncWorker* asyncWorker )
+    {
+
+    }
 
     static  void    ProcessBegin( AsyncWorker* asyncWorker )
     {
-        cout << "ProcessBegin" << endl;
-        auto originalMsg = static_cast< MessageTaskDeliver* >( asyncWorker->data() );
-        string shellCmd;
-        OrderMakerParams OrderParams( originalMsg->task_id() );
 
-        MessageTaskProgress taskProgress;
-        taskProgress.task_id( originalMsg->task_id() );
-
-        taskProgress.progress( 0 );
-        PostOffice::instance()->SendMail( &taskProgress );
-
-        shellCmd = OrderMaker::instance()->MakeSamOrder( OrderParams );
-        cout << "cmd is " << shellCmd << endl;;
-        system( shellCmd.c_str() );
-        taskProgress.progress( 60 );
-        PostOffice::instance()->SendMail( &taskProgress );
     }
-
-    static  void    ProcessEnd( AsyncWorker* asyncWorker )
+    static  void    ProcessEnd  ( AsyncWorker* asyncWorker )
     {
-        auto originalMsg = static_cast< MessageTaskDeliver* >( asyncWorker->data() );
 
-        MessageTaskResult msgout;
-        PostOffice::instance()->self_status = PostOffice::ExcutorSates::kUploading;
-        PostOffice::instance()->SendSelfStatus();
-        FileUploader uploader;
-        OrderMakerParams OrderParams( originalMsg->task_id() );
-        uploader.UploadFileViaHttp( OrderParams.taskid , OrderParams.workdir + OrderParams.taskid + OrderParams.samTail , OrderParams.postDest );
-
-        MessageTaskProgress taskProgress;
-        taskProgress.task_id( originalMsg->task_id() );
-        taskProgress.progress( 100 );
-        PostOffice::instance()->SendMail( &taskProgress );
-
-        PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
-        PostOffice::instance()->SendSelfStatus();
-
-        std::cout << "Task done" << std::endl;
-
-        msgout.task_id( originalMsg->task_id() );
-        PostOffice::instance()->SendMail( &msgout );
-
-        PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;
-        PostOffice::instance()->SendSelfStatus();
-
-        delete originalMsg;
-        originalMsg = nullptr;
-        asyncWorker->data( nullptr );
-        cout << "Standby" << endl;
     }
-#else
+    static  void    PushBegin   ( AsyncWorker* asyncWorker )
+    {
+
+    }
+
+    static  void    PushEnd     ( AsyncWorker* asyncWorker )
+    {
+
+    }
+
+    /*
     static  void    ProcessBegin( AsyncWorker* asyncWorker )
     {
         cout << "ProcessBegin" << endl;
@@ -163,7 +203,7 @@ namespace Protocol
         asyncWorker->data( nullptr );
         cout << "Standby" << endl;
     }
-#endif
+*/
 
 } // End of namespace Protocol
 #endif // !Message_Task_Deliver_HANDLER_HPP_
