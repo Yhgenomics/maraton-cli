@@ -1,5 +1,6 @@
 #include "DockerHelper.h"
 #include "AnalysisHelper.h"
+#include "ExecutorConfig.hpp"
 #include <stdlib.h>
 #include <curl.h>
 #include <string>
@@ -17,10 +18,10 @@ size_t AnalysisHelper::ProcessData( int threadsNum, string refGene, string reads
     environment.push_back( "refgen="+refGene );
     environment.push_back( "reads="+reads );
     vector< string > binds;
-    binds.push_back( "/home/ubuntu/GeneData/dockerin/:/input/" );
-    binds.push_back( "/home/ubuntu/GeneData/dockerout/:/output/" );
-    binds.push_back( "/home/ubuntu/GeneData/ref/:/ref/" );
-    binds.push_back( "/dev/shm/:/dev/shm/" );
+    binds.push_back( ExecutorConfig::instance()->inputDir  + ":/input/"   );
+    binds.push_back( ExecutorConfig::instance()->outputDir + ":/output/"  );
+    binds.push_back( ExecutorConfig::instance()->refDir    + ":/ref/"     );
+    binds.push_back( ExecutorConfig::instance()->shmDir    + ":/dev/shm/" );
     return DockerHelper::instance()->Run( docker_daemon, process_image, binds, environment );
 }
 

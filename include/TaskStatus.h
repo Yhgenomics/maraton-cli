@@ -14,34 +14,53 @@ namespace MaratonCommon
 
         enum BlockStatus
         {
-            WAIT=0,
-            PULLING,
-            PULLED,
-            PROCESSING,
-            PROCESSED,
-            PUSHED,
-            FINISHED
+            kWait=0,
+            kPulling,
+            kPulled,
+            kProcessing,
+            kProcessed,
+            kPushing,
+            kPushed,
+            kFinished,
+            kException
         };
 
         map< string, BlockStatus > block_map;
+        string ref_gen_name;
+        string task_id;
+
         bool IsAllFinished()
         {
-            return IsAllPassPhase ( BlockStatus::FINISHED );
+            return IsAllPassPhase ( BlockStatus::kFinished  );
         }
 
         bool IsAllPulled()
         {
-            return IsAllPassPhase ( BlockStatus::PULLED );
+            return IsAllPassPhase ( BlockStatus::kPulled    );
         }
 
         bool IsAllProcessed()
         {
-            return IsAllPassPhase ( BlockStatus::PROCESSED);
+            return IsAllPassPhase ( BlockStatus::kProcessed );
         }
 
         bool IsAllPushed()
         {
-            return IsAllPassPhase ( BlockStatus::PUSHED );
+            return IsAllPassPhase ( BlockStatus::kPushed    );
+        }
+
+        bool IsAnyException()
+        {
+            bool result = false;
+            for ( auto block : block_map )
+            {
+                if ( BlockStatus::kException == block.second )
+                {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
         }
 
         bool IsAllPassPhase ( BlockStatus phase )
@@ -54,8 +73,6 @@ namespace MaratonCommon
             }
             return result;
         }
-
-
 
      };
 }
