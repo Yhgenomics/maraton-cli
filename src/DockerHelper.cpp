@@ -82,6 +82,7 @@ namespace MaratonCommon
         watchParams.option  = NetHelperParams::XMark::POST;
 
         NetHelper::instance()->PostViaHTTP( watchParams, response );
+        return 0;
     }
 
     size_t DockerHelper::Run( const string &dest, const string &image, const vector< string > &binds, const vector< string  > &environment )

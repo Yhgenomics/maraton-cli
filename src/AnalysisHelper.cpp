@@ -10,19 +10,25 @@ using namespace MaratonCommon;
 
 size_t AnalysisHelper::ProcessData( int threadsNum, string refGene, string reads )
 {
+    char    threadFlagBuffer[20];
+    sprintf( threadFlagBuffer, "t=%d", threadsNum );
+    string  threadFlag( threadFlagBuffer );
+
     vector< string > environment;
-    char threadFlagBuffer[20];
-    sprintf( threadFlagBuffer, "t=%d",threadsNum );
-    string threadFlag( threadFlagBuffer );
-    environment.push_back( threadFlag);
-    environment.push_back( "refgen="+refGene );
-    environment.push_back( "reads="+reads );
+    environment.push_back( threadFlag           );
+    environment.push_back( "refgen=" + refGene  );
+    environment.push_back( "reads=" + reads     );
+
     vector< string > binds;
     binds.push_back( ExecutorConfig::instance()->inputDir  + ":/input/"   );
     binds.push_back( ExecutorConfig::instance()->outputDir + ":/output/"  );
     binds.push_back( ExecutorConfig::instance()->refDir    + ":/ref/"     );
     binds.push_back( ExecutorConfig::instance()->shmDir    + ":/dev/shm/" );
-    return DockerHelper::instance()->Run( docker_daemon, process_image, binds, environment );
+
+    return DockerHelper::instance()->Run( ExecutorConfig::instance()->dockerDaemon
+            , ExecutorConfig::instance()->processor
+            , binds
+            , environment );
 }
 
 size_t AnalysisHelper::PrepareSpace()
@@ -32,7 +38,8 @@ size_t AnalysisHelper::PrepareSpace()
 
 size_t AnalysisHelper::CheckEnviroment()
 {
-    DockerHelper::instance()->Pull( docker_daemon, process_image );
+    DockerHelper::instance()->Pull( ExecutorConfig::instance()->dockerDaemon
+            , ExecutorConfig::instance()->processor );
     return 0;
 }
 
