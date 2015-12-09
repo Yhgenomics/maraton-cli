@@ -17,7 +17,7 @@ private:
     void    Deinit();
 
     // set -1 for no waiting
-    void    SetTimeOut( long milliseconds );
+    void    SetTimeOut( long *milliseconds );
 
     CURL            *curl_;
     CURLM           *multi_handle_;

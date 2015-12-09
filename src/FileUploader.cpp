@@ -1,4 +1,5 @@
 #include "FileUploader.h"
+#include <iostream>
 
 bool    FileUploader::UploadFileViaHttp( std::string taskID , std::string fileFullName , std::string postDest )
 {
@@ -51,7 +52,7 @@ void    FileUploader::PreparePostMark( std::string taskID , std::string fileFull
 void    FileUploader::SetOptions( std::string postDest )
 {
     curl_easy_setopt( curl_ , CURLOPT_URL           , postDest.c_str()  );
-    curl_easy_setopt( curl_ , CURLOPT_VERBOSE       , 1L                );
+    curl_easy_setopt( curl_ , CURLOPT_VERBOSE       , 0L                );
     curl_easy_setopt( curl_ , CURLOPT_HTTPHEADER    , header_list_      );
     curl_easy_setopt( curl_ , CURLOPT_HTTPPOST      , post_             );
 
@@ -67,7 +68,8 @@ void    FileUploader::PostFile()
         fd_set      fdwrite;    FD_ZERO( &fdwrite );
         fd_set      fdexcep;    FD_ZERO( &fdexcep );
 
-        SetTimeOut( -1L );
+        long timeo = -1L;
+        SetTimeOut( &timeo );
 
         int         maxfd       = -1;
         CURLMcode   curlmCode   = curl_multi_fdset( multi_handle_ , &fdread , &fdwrite , &fdexcep , &maxfd );
@@ -85,7 +87,7 @@ void    FileUploader::PostFile()
 #ifdef _WIN32
             Sleep( 100 );
             selectResult = 0;
-#else			
+#else
             timeval wait = { 0, 100 * 1000 };
             selectResult = select( 0 , NULL , NULL , NULL , &wait );
 #endif
@@ -112,25 +114,25 @@ void    FileUploader::PostFile()
 void    FileUploader::Deinit()
 {
     if ( multi_handle_ ) { curl_multi_cleanup( multi_handle_ ); }
-    if ( curl_ ) { curl_easy_cleanup( curl_ ); }
-    if ( post_ ) { curl_formfree( post_ ); }
-    if ( header_list_ ) { curl_slist_free_all( header_list_ ); }
+    if ( curl_         ) { curl_easy_cleanup( curl_ );          }
+    if ( post_         ) { curl_formfree( post_ );              }
+    if ( header_list_  ) { curl_slist_free_all( header_list_ ); }
 }
 
-void    FileUploader::SetTimeOut( long milliseconds )
+void    FileUploader::SetTimeOut( long *milliseconds )
 {
-    timeout_ms_		 = milliseconds;
+    timeout_ms_		 = *milliseconds;
     timeout_.tv_sec	 = 1;
     timeout_.tv_usec = 0;
 
-    curl_multi_timeout( multi_handle_ , &milliseconds );
+    curl_multi_timeout( multi_handle_ , milliseconds );
 
-    if ( milliseconds >= 0 )
+    if ( *milliseconds >= 0 )
     {
-        timeout_.tv_sec = milliseconds / 1000;
+        timeout_.tv_sec = *milliseconds / 1000;
         if ( timeout_.tv_sec > 1 )
             timeout_.tv_sec = 1;
         else
-            timeout_.tv_usec = ( milliseconds % 1000 ) * 1000;
+            timeout_.tv_usec = ( *milliseconds % 1000 ) * 1000;
     }
 }

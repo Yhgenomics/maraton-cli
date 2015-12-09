@@ -23,6 +23,7 @@ namespace MaratonCommon
 
         pullParams.url      = dest + kCreateImage + kParamsToken + kFromImage + source;
         pullParams.option   = NetHelperParams::XMark::POST;
+        pullParams.verbose  = false;
 
         vector< string > response;
         NetHelper::instance()->PostViaHTTP( pullParams ,&response );
@@ -47,6 +48,7 @@ namespace MaratonCommon
         createParams.url            = dest + kCreateContianer;
         createParams.post_fields    = postJson.dump();
         createParams.option         = NetHelperParams::XMark::POST;
+        createParams.verbose        = false;
 
         NetHelper::instance()->PostViaHTTP( createParams ,response );
 
@@ -59,6 +61,7 @@ namespace MaratonCommon
 
         startParams.url     = dest + "/containers/" + containerID + "/start";
         startParams.option  = NetHelperParams::XMark::POST;
+        startParams.verbose = false;
 
         NetHelper::instance()->PostViaHTTP( startParams, response );
         return 0;
@@ -69,6 +72,7 @@ namespace MaratonCommon
         NetHelperParams waitParams;
         waitParams.url      = dest + "/containers/" + containerID + "/wait";
         waitParams.option   = NetHelperParams::XMark::POST;
+        waitParams.verbose  = false;
 
         NetHelper::instance()->PostViaHTTP( waitParams, response );
         return 0;

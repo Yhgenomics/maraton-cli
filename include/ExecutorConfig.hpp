@@ -32,8 +32,8 @@ public:
     string  outputTail  = ".in.bam";
 
     // sleep time
-    size_t  transWait   = 1000;  // in milliseconds
-    size_t  processWait = 1000;  // in milliseconds
+    size_t  transWait   = 100;  // in milliseconds
+    size_t  processWait = 100;  // in milliseconds
 
     // suffix strategy
     enum SuffixType
