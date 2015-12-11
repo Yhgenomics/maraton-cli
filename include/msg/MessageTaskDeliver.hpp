@@ -51,6 +51,19 @@ namespace Protocol
             raw_data_[ "data" ][ "aligner" ] = value;
         }
         
+        // Getter of sorter_
+        string sorter()
+        {
+            return sorter_;
+        }
+        
+        // Setter of sorter_
+        void sorter( string value )
+        {
+            sorter_ = value;
+            raw_data_[ "data" ][ "sorter" ] = value;
+        }
+        
         // Getter of reference_
         string reference()
         {
@@ -71,6 +84,7 @@ namespace Protocol
             task_id( "" );
             uri_list(  );
             aligner( "" );
+            sorter( "" );
             reference( "" );
         }
         
@@ -81,6 +95,7 @@ namespace Protocol
             this->task_id_ = raw_data_[ "data" ][ "task_id" ].get<string>();
             this->uri_list_ = raw_data_[ "data" ][ "uri_list" ].get<vector<std::string>>();
             this->aligner_ = raw_data_[ "data" ][ "aligner" ].get<string>();
+            this->sorter_ = raw_data_[ "data" ][ "sorter" ].get<string>();
             this->reference_ = raw_data_[ "data" ][ "reference" ].get<string>();
         }
     
@@ -89,6 +104,7 @@ namespace Protocol
         string task_id_;
         vector<std::string> uri_list_;
         string aligner_;
+        string sorter_;
         string reference_;
     
     }; // End of class define of MessageTaskDeliver

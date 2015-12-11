@@ -38,6 +38,19 @@ namespace Protocol
             raw_data_[ "data" ][ "error" ] = value;
         }
         
+        // Getter of stage_
+        size_t stage()
+        {
+            return stage_;
+        }
+        
+        // Setter of stage_
+        void stage( size_t value )
+        {
+            stage_ = value;
+            raw_data_[ "data" ][ "stage" ] = value;
+        }
+        
         // Getter of result_
         string result()
         {
@@ -57,6 +70,7 @@ namespace Protocol
         {
             task_id( "" );
             error( 0 );
+            stage( 0 );
             result( "TaskNoError" );
         }
         
@@ -66,6 +80,7 @@ namespace Protocol
         {
             this->task_id_ = raw_data_[ "data" ][ "task_id" ].get<string>();
             this->error_ = raw_data_[ "data" ][ "error" ].get<size_t>();
+            this->stage_ = raw_data_[ "data" ][ "stage" ].get<size_t>();
             this->result_ = raw_data_[ "data" ][ "result" ].get<string>();
         }
     
@@ -73,6 +88,7 @@ namespace Protocol
     
         string task_id_;
         size_t error_;
+        size_t stage_;
         string result_;
     
     }; // End of class define of MessageTaskResult
