@@ -31,6 +31,16 @@ size_t AnalysisHelper::ProcessData( int threadsNum, string refGene, string reads
             , environment );
 }
 
+//size_t AnalysisHelper::Sort()
+//{
+//    ;
+//}
+
+//size_t AnalysisHelper::MergeProcess()
+//{
+//    ;
+//}
+
 size_t AnalysisHelper::PrepareSpace()
 {
     return 0;
