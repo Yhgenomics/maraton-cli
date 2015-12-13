@@ -237,10 +237,12 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o
  /home/ubuntu/DreamLand/maraton-cli/include/maraton.h
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageAbilityQuery.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageAbilityQueryACK.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageConfig.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageExceptionReport.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageGreeting.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageHeartBeat.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageIntro.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageMergeProcess.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageResourcesQuery.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageResourcesQueryACK.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageStatusReport.hpp
@@ -258,10 +260,12 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageAbilityQueryHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageCommand.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageCommandHandler.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageConfigHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageExceptionReportHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageGreetingHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageHeartBeatHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageIntroHandler.hpp
+ /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageMergeProcessHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageResourcesQueryACKHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageResourcesQueryHandler.hpp
  /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageStatusReportHandler.hpp

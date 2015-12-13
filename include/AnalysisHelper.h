@@ -15,11 +15,12 @@ namespace MaratonCommon
     class AnalysisHelper : public DockerHelper
     {
     public:
-       size_t   ProcessData( int threadNum, string refGene, string reads );
+       size_t   ProcessData( const int& threadNum, const string& refGene,const string& reads );
        size_t   PrepareSpace();
        size_t   CheckEnviroment();
        size_t   UploadResult();
-
+       size_t   SortData( const string& samFile );
+       size_t   MergeProcess( const string& refGene, const string& bams ,const string& vcfName );
     };
 }
 #endif // !ANALYSIS_HELPER_H_

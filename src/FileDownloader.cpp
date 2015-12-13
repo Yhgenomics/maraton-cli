@@ -43,7 +43,7 @@ bool FileDownloader::DownloadViaHTTP( std::string path , std::string uri )
     curl_easy_setopt( curl , CURLOPT_URL , uri.c_str() );
 
     std::ofstream fout;
-    fout.open( path.c_str() , std::ios::app | std::ios::binary );
+    fout.open( path.c_str() , std::ios::binary );
 
     curl_easy_setopt( curl , CURLOPT_WRITEFUNCTION  , DownloadCallBackSTL );
     curl_easy_setopt( curl , CURLOPT_WRITEDATA      , &fout );

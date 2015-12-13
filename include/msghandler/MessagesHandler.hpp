@@ -2,11 +2,6 @@
 #define MESSAGES_HANDLER_HPP_
 
 #include "stdlib.h"
-#include "HTTPMessageCommandHandler.hpp"
-#include "HTTPMessageListExecutorHandler.hpp"
-#include "HTTPMessageResultHandler.hpp"
-#include "HTTPMessageTaskStartHandler.hpp"
-#include "HTTPMessageTaskStopHandler.hpp"
 #include "MessageAbilityQueryHandler.hpp"
 #include "MessageAbilityQueryACKHandler.hpp"
 #include "MessageCommandHandler.hpp"

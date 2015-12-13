@@ -32,6 +32,10 @@ namespace Protocol
     static  void    ProcessEnd  ( AsyncWorker* asyncWorker );
     static  void    InspectOn   ( AsyncWorker* asyncWorker );
     static  void    InspectOff  ( AsyncWorker* asyncWorker );
+    static  void    SortBegin   ( AsyncWorker* asyncWorker );
+    static  void    SortEnd     ( AsyncWorker* asyncWorker );
+    static  void    SortOneBegin( AsyncWorker* asyncWorker );
+    static  void    SortOneEnd  ( AsyncWorker* asyncWorker );
 
     static  uv_mutex_t  taskStatusMutex;
 
@@ -57,6 +61,7 @@ namespace Protocol
         processNum = 0;
         uv_mutex_unlock ( &clockMutex );
 #endif
+
         // UserDefineHandler Begin
         // Your Codes here!
         if ( PostOffice::instance()->self_status == 3 )
@@ -75,7 +80,7 @@ namespace Protocol
 
             AsyncWorker::create( PullBegin    , PullEnd    , nullptr );
             AsyncWorker::create( ProcessBegin , ProcessEnd , nullptr );
-            AsyncWorker::create( InspectOn    , InspectOff , nullptr );
+           // AsyncWorker::create( InspectOn    , InspectOff , nullptr );
         }
 
         return 0;
@@ -92,12 +97,14 @@ namespace Protocol
             item.second = MaratonCommon::TaskStatus::BlockStatus::kPulling;
             uv_mutex_unlock( &taskStatusMutex );
 
-            string fileName ;
-            ExecutorConfig::instance()->GetFileName( item.first, fileName, ExecutorConfig::SuffixType::kInputFile );
+            string fileName = item.first;
+            ExecutorConfig::instance()->GetFileName( fileName, ExecutorConfig::SuffixType::kInputFile );
+            string uri      = "";
+            ExecutorConfig::instance()->GetUri( uri, ExecutorConfig::instance()->pullFastq, item.first, "");
 
             bool cancel = false;
             FileDownloader fileDownloader( &cancel );
-            fileDownloader.DownloadViaHTTP( ExecutorConfig::instance()->inputDir + fileName  , item.first );
+            fileDownloader.DownloadViaHTTP( ExecutorConfig::instance()->inputDir + fileName  , uri );
 
             uv_mutex_lock  ( &taskStatusMutex );
             item.second = MaratonCommon::TaskStatus::BlockStatus::kPulled;
@@ -130,7 +137,8 @@ namespace Protocol
                         uv_mutex_unlock ( &clockMutex );
                     }
 #endif
-                    ExecutorConfig::instance()->GetFileName( item.first, fileName, ExecutorConfig::SuffixType::kInputFile );
+                   //  fileName = item.first;
+                   //  ExecutorConfig::instance()->GetFileName( fileName, ExecutorConfig::SuffixType::kInputFile );
                     NoFileToProcess = false;
 
                     uv_mutex_lock  ( &taskStatusMutex );
@@ -142,7 +150,7 @@ namespace Protocol
                     analysisHelper.CheckEnviroment();
                     auto exitStatus=  analysisHelper.ProcessData( ExecutorConfig::instance()->threadNum
                             , PostOffice::instance()->GetCurrentTaskStatus().ref_gen_name
-                            , fileName) ;
+                            , item.first ) ;
 
                     uv_mutex_lock  ( &taskStatusMutex );
                     item.second = ( 0 == exitStatus )? MaratonCommon::TaskStatus::BlockStatus::kProcessed : MaratonCommon::TaskStatus::BlockStatus::kException;
@@ -166,8 +174,69 @@ namespace Protocol
         proceess_end_at = chrono::steady_clock::now();
         uv_mutex_unlock ( &clockMutex );
 #endif
+
         cout << "############ process All Down "<< endl;
-        cout << "############ process meet any exception ? " << PostOffice::instance()->GetCurrentTaskStatus().IsAnyException() << endl;;
+
+        if( false ==  PostOffice::instance()->GetCurrentTaskStatus().IsAnyException() )
+        {
+            AsyncWorker::create( SortBegin    , SortEnd , nullptr );
+        }
+        else
+        {
+            cout << "###########[WARNING] process meet exception" << endl;
+        }
+    }
+
+    static  void    SortBegin   ( AsyncWorker* asyncWorker )
+    {
+        for ( auto& item : PostOffice::instance()->GetCurrentTaskStatus().block_map )
+        {
+            auto temp = new string( item.first );
+            AsyncWorker::create ( SortOneBegin, SortOneEnd, temp );
+        }
+        while ( !PostOffice::instance()->GetCurrentTaskStatus().IsAllSorted() )
+        {
+            this_thread::sleep_for( chrono::milliseconds( ExecutorConfig::instance()->sortWait ) );
+        }
+    }
+
+    static  void    SortEnd     ( AsyncWorker* asyncWorker )
+    {
+        cout << "############### sort all started" << endl;
+        AsyncWorker::create( InspectOn    , InspectOff , nullptr );
+    }
+
+    static  void    SortOneBegin( AsyncWorker* asyncWorker )
+    {
+        auto temp = static_cast< string* > ( asyncWorker->data() );
+        MaratonCommon::AnalysisHelper analysisHelper;
+
+        uv_mutex_lock   ( &taskStatusMutex );
+        PostOffice::instance()->GetCurrentTaskStatus().SetBlockStatus(*temp ,MaratonCommon::TaskStatus::BlockStatus::kSorting );
+        uv_mutex_unlock ( &taskStatusMutex );
+
+        // analysisHelper.CheckEnviroment();
+        auto exitStatus=  analysisHelper.SortData( *temp );
+
+        uv_mutex_lock  ( &taskStatusMutex );
+        if( 0 == exitStatus )
+        {
+            PostOffice::instance()->GetCurrentTaskStatus().SetBlockStatus(*temp ,MaratonCommon::TaskStatus::BlockStatus::kSorted );
+        }
+        else
+        {
+            PostOffice::instance()->GetCurrentTaskStatus().SetBlockStatus(*temp ,MaratonCommon::TaskStatus::BlockStatus::kException );
+        }
+        cout << exitStatus <<"#########file Sorted " << *temp << endl;
+        uv_mutex_unlock( &taskStatusMutex );
+
+        delete temp;
+        temp = nullptr;
+    }
+
+    static  void    SortOneEnd  ( AsyncWorker* asyncWorker )
+    {
+
     }
 
     static  void    InspectOn   ( AsyncWorker* asyncWorker )
@@ -182,9 +251,10 @@ namespace Protocol
 
             for ( auto& item : PostOffice::instance()->GetCurrentTaskStatus().block_map )
             {
-                if ( MaratonCommon::TaskStatus::BlockStatus::kProcessed == item.second )
+                if ( MaratonCommon::TaskStatus::BlockStatus::kSorted == item.second )
                 {
-                    ExecutorConfig::instance()->GetFileName( item.first, fileName, ExecutorConfig::SuffixType::kOutPutFile );
+                    fileName = item.first;
+                    ExecutorConfig::instance()->GetFileName( fileName, ExecutorConfig::SuffixType::kOutPutFile );
                     NoFileToPush = false;
 
                     uv_mutex_lock  ( &taskStatusMutex );
@@ -194,7 +264,7 @@ namespace Protocol
                     FileUploader uploader;
                     uploader.UploadFileViaHttp( PostOffice::instance()->GetCurrentTaskStatus().task_id
                             , ExecutorConfig::instance()->outputDir + fileName
-                            , ExecutorConfig::instance()->postDest );
+                            , ExecutorConfig::instance()->postBam );
 
                     uv_mutex_lock  ( &taskStatusMutex );
                     item.second = MaratonCommon::TaskStatus::BlockStatus::kPushed;
@@ -239,15 +309,23 @@ namespace Protocol
         PostOffice::instance()->self_status = PostOffice::ExcutorSates::kTaskFinished;
         PostOffice::instance()->SendSelfStatus();
 
-        cout << endl << "############ Task done" << endl;
+        cout << endl << "############ Task aligned and sorted" << endl;
 
         msgout.task_id( PostOffice::instance()->current_task );
         if ( PostOffice::instance()->GetCurrentTaskStatus().IsAnyException() )
         {
             msgout.error( 1 );
+            msgout.stage( ExecutorConfig::instance()->TaskStage::kUnknown );
             msgout.result( "[ EXCEPTION ]: At least one block in the list cannot be processed" );
-
+            cout <<endl << "######### but At least one block in the list cannot be processed " << endl;
         }
+        else
+        {
+            msgout.error( 0 );
+            msgout.stage ( ExecutorConfig::instance()->TaskStage::kAligned );
+            msgout.result( "OK! Aligment finished!" );
+        }
+
         PostOffice::instance()->SendMail( &msgout );
 
         PostOffice::instance()->self_status = PostOffice::ExcutorSates::kStandby;

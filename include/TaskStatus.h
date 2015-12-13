@@ -19,6 +19,8 @@ namespace MaratonCommon
             kPulled,
             kProcessing,
             kProcessed,
+            kSorting,
+            kSorted,
             kPushing,
             kPushed,
             kFinished,
@@ -29,6 +31,17 @@ namespace MaratonCommon
         string ref_gen_name;
         string task_id;
 
+        bool SetBlockStatus(const string& id ,const BlockStatus& status)
+        {
+            bool result = false;
+            auto it = block_map.find(id);
+            if ( block_map.end() != it )
+            {
+                it->second = status;
+                result = true;
+            }
+            return result;
+        }
         bool IsAllFinished()
         {
             return IsAllPassPhase ( BlockStatus::kFinished  );
@@ -42,6 +55,10 @@ namespace MaratonCommon
         bool IsAllProcessed()
         {
             return IsAllPassPhase ( BlockStatus::kProcessed );
+        }
+        bool IsAllSorted()
+        {
+            return IsAllPassPhase ( BlockStatus::kSorted    );
         }
 
         bool IsAllPushed()

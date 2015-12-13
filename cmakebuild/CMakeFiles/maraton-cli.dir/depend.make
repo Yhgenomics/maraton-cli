@@ -236,10 +236,12 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /ho
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/maraton.h
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageAbilityQuery.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageAbilityQueryACK.hpp
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageConfig.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageExceptionReport.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageGreeting.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageHeartBeat.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageIntro.hpp
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageMergeProcess.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageResourcesQuery.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageResourcesQueryACK.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msg/MessageStatusReport.hpp
@@ -257,10 +259,12 @@ CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /ho
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageAbilityQueryHandler.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageCommand.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageCommandHandler.hpp
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageConfigHandler.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageExceptionReportHandler.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageGreetingHandler.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageHeartBeatHandler.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageIntroHandler.hpp
+CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageMergeProcessHandler.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageResourcesQueryACKHandler.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageResourcesQueryHandler.hpp
 CMakeFiles/maraton-cli.dir/home/ubuntu/DreamLand/maraton-cli/src/cli-main.o: /home/ubuntu/DreamLand/maraton-cli/include/msghandler/MessageStatusReportHandler.hpp
